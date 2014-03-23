@@ -1,16 +1,38 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>HexaMemory</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, , initial-scale=1, maximum-scale=1" />        
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        
+        <link type="text/css" rel="stylesheet" href="css/basic_game_layout.css" />
     </head>
     <body>
-        <div>TODO write content</div>
+        <div id="header-board">
+            <div id="score-best" >
+                <span class="label">Best: </span>
+                <span class="score" >0</span>
+            </div>
+            <div id="score-current" >
+                <span class="label">Current: </span>
+                <span class="score" >0</span>
+            </div>
+            <form id="controls" >
+                <input id="auto-progress" name="auto-progress" checked="checked" 
+                       type="checkbox"/>
+                <label for="auto-progress" id="auto-progress-label" >
+                    Auto-Progress
+                </label>
+            </form>
+        </div>
+        <div id="game-body-wrapper" >
+            <div id="game-body">
+                    What?
+            </div>
+        </div>        
     </body>
 </html>

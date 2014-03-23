@@ -1,0 +1,234 @@
+/*  Contains the styles for the basic memory game layout.
+
+Calculation for main hexagons:
+(width/2) * tan(30 deg) = triangle height (simple trig)
+
+    version: 0.1.0-20140323
+    Created on : Mar 23, 2014, 12:36:20 PM
+    Author     : Jason J.
+*/
+html, body{
+    height: 100%;
+    background: #000;
+}
+
+label {
+    cursor: pointer;
+}
+
+#header-board {
+    color: gray;
+}
+
+#header-board * {
+    float: left;
+    margin: 5px;
+}
+
+/**
+ * #.# Game body 
+ *
+ * The main play area where the action happens. 
+ */
+
+/** Make the border/background be behind the main body. */
+#game-body-wrapper,
+#game-body-wrapper:before, 
+#game-body-wrapper:after {
+    z-index: 1;
+}
+
+/** Make the main body be in front. */
+#game-body,
+#game-body:before, 
+#game-body:after {
+    z-index: 2;
+}
+
+/** Wrapper- the border of the game. */ 
+#game-body-wrapper {
+    position: absolute; 
+    
+    height: 274px;
+    width: 476px;
+    
+    top: 50%;
+    left: 50%;
+    margin-top: -137px;
+    margin-left: -238px;
+    
+    text-align: center; 
+    background: grey;
+    
+    /** Border helps reduce seams. */
+    border-top: grey solid 1px;
+    border-bottom: grey solid 1px;  
+    border-radius: 3px;
+}
+/** Part 1: to giving the wrapper a hexagonal shape. 
+Remember to balance the widths here with the width in the 
+#game-body-wrapper. */
+#game-body-wrapper:before, 
+#game-body-wrapper:after {
+    position: absolute;
+    left: 50%;
+    margin-left: -238px;
+    
+    content: "";
+    width: 6px;
+    height: 0px;
+    
+    border-right: 235px solid transparent; 
+    border-left: 235px solid transparent; 
+    border-radius: 5px;
+}
+
+/** Part 2b: to giving the wrapper a hexagonal shape. 
+Remember to balance the heights here with the heights in the 
+#game-body-wrapper. */
+#game-body-wrapper:before {    
+    top: -137px;
+    border-bottom: 137px solid grey; 
+}
+/** Part 2a: to giving the wrapper a hexagonal shape. 
+Remember to balance the heights here with the heights in the 
+#game-body-wrapper. */
+#game-body-wrapper:after {
+    bottom: -137px;
+    border-top: 137px solid grey; 
+}
+
+
+/** Wrapper- the border of the game. */ 
+#game-body {
+    position: absolute; 
+    
+    height: 262px;
+    width: 456px;
+    
+    top: 50%;
+    left: 50%;
+    margin-top: -131px;
+    margin-left: -228px;
+    
+    text-align: center; 
+    background: black;
+    
+    border-top: black solid 1px;
+    border-bottom: black solid 1px;    
+    border-radius: 3px;
+}
+
+#game-body:before, 
+#game-body:after {
+    position: absolute;
+    left: 50%;
+    margin-left: -228px;
+    
+    content: " ";
+    width: 6px;
+    height: 0px;
+    
+    border-right: 225px solid transparent; 
+    border-left: 225px solid transparent; 
+    border-radius: 5px;
+}
+
+#game-body:before {    
+    top: -131px;
+    border-bottom: 131px solid black; 
+}
+
+#game-body:after {
+    bottom: -131px;
+    border-top: 131px solid black; 
+}
+
+
+
+#test-hex1 {
+    margin: 20px;
+    position: relative;
+    border-top: red solid 1px;
+    border-bottom: red solid 1px;
+    background: green;
+    
+    height: 30px;
+    width: 40px;
+}
+
+#test-hex1:before{
+    border-bottom-color: red;
+}
+#test-hex1:after {    
+    border-top-color: red;
+}
+
+
+.vertical-point-hexagon:before {
+    position: absolute;
+    top: -20px;
+    
+    content: " ";
+    width: 0px;
+    height: 0px;
+    
+    border-bottom: 20px solid; 
+    border-right: 20px solid transparent; 
+    border-left: 20px solid transparent; 
+}
+
+.vertical-point-hexagon:after {
+    position: absolute;
+    bottom: -20px;
+    
+    width: 0px;
+    height: 0px;
+    content: " ";
+    
+    border-top: 20px solid; 
+    border-right: 20px solid transparent; 
+    border-left: 20px solid transparent; 
+}
+
+
+
+#test-hex2 {
+    margin: 20px;
+    position: relative;
+    border-top: blueviolet solid 1px;
+    border-bottom: blueviolet solid 1px;
+    background: blue;
+    
+    height: 50px;
+    width: 40px;
+}
+
+#test-hex2:before,
+#test-hex2:after { 
+    border-left-color: blueviolet;
+    border-right-color: blueviolet;
+       
+    
+}
+
+.vertical-mask-hexagon:before,
+.vertical-mask-hexagon:after {
+    position: absolute;
+        
+    width: 0px;
+    height: 0px;
+    content: " ";
+    border-right: 20px solid; 
+    border-left: 20px solid; 
+}
+.vertical-mask-hexagon:before {
+    border-bottom: 20px solid transparent;
+}
+
+.vertical-mask-hexagon:after {    
+    bottom: 0px;
+    border-top: 20px solid transparent;    
+}
+
+
