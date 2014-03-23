@@ -1,4 +1,6 @@
 
+Challenge
+
 Goals:
 -------
 
@@ -9,6 +11,7 @@ To create a "simon says" style game using only css + html for the visuals.
 -Must show the maximum round
 -Must have basic support for IE8 (by means of progressive enhancement)
 -Must have support for Firefox, Chrome & iOS 7 Safari iPad
+-Must avoid external libraries
 
 -Audio is optional.
 -Score storage is optional.
@@ -19,3 +22,15 @@ The clock starts when this file is committed (only a blank index.html exists).
 
 Notes
 -------
+
+
+Original thoughts are to use hexagons for the "lights".
+Thought: Does IE8 support pseudo-css-elements?  I think not.
+Thought: Does IE8 support rotation? I think not.
+
+Have an auto progress on the start (checkbox to make it optional)
+
+Use css3 animations for the flashes
+
+In IE8 use a combination of timeouts & opacity to do the flashes.
+
