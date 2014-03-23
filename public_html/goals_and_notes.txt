@@ -1,0 +1,21 @@
+
+Goals:
+-------
+
+To create a "simon says" style game using only css + html for the visuals.
+
+-Must be visually pleasing and NOT use squares
+-Must show the current round
+-Must show the maximum round
+-Must have basic support for IE8 (by means of progressive enhancement)
+-Must have support for Firefox, Chrome & iOS 7 Safari iPad
+
+-Audio is optional.
+-Score storage is optional.
+
+******** Most importantly: To create it quickly. ******** 
+The clock starts when this file is committed (only a blank index.html exists).
+
+
+Notes
+-------
