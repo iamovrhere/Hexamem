@@ -3,26 +3,47 @@
 Calculation for main hexagons:
 (width/2) * tan(30 deg) = triangle height (simple trig)
 
-    version: 0.1.0-20140323
+    version: 0.1.1-20140323
     Created on : Mar 23, 2014, 12:36:20 PM
     Author     : Jason J.
 */
 html, body{
     height: 100%;
     background: #000;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    
+    color: gray;
+    font-size: 14pt;
 }
 
 label {
     cursor: pointer;
 }
-
-#header-board {
-    color: gray;
-}
-
 #header-board * {
+    line-height: 18pt;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    
+    
     float: left;
     margin: 5px;
+}
+#header-board form {
+    float: right;
+}
+#header-board .label{
+    font-size: 18pt;
+}
+#header-board .score{
+    float: right;
+}
+
+#header-board #score-best, 
+#header-board #score-current{
+    margin-left: 20px;
+    width: 150px;
+    text-align: right;
 }
 
 /**
@@ -49,13 +70,13 @@ label {
 #game-body-wrapper {
     position: absolute; 
     
-    height: 274px;
-    width: 476px;
+    height: 336px;
+    width: 582px;
     
     top: 50%;
     left: 50%;
-    margin-top: -137px;
-    margin-left: -238px;
+    margin-top: -168px;
+    margin-left: -291px;
     
     text-align: center; 
     background: grey;
@@ -72,14 +93,14 @@ Remember to balance the widths here with the width in the
 #game-body-wrapper:after {
     position: absolute;
     left: 50%;
-    margin-left: -238px;
+    margin-left: -291px;
     
     content: "";
     width: 6px;
     height: 0px;
     
-    border-right: 235px solid transparent; 
-    border-left: 235px solid transparent; 
+    border-right: 288px solid transparent; 
+    border-left: 288px solid transparent; 
     border-radius: 5px;
 }
 
@@ -87,29 +108,29 @@ Remember to balance the widths here with the width in the
 Remember to balance the heights here with the heights in the 
 #game-body-wrapper. */
 #game-body-wrapper:before {    
-    top: -137px;
-    border-bottom: 137px solid grey; 
+    top: -166px;
+    border-bottom: 166px solid grey; 
 }
 /** Part 2a: to giving the wrapper a hexagonal shape. 
 Remember to balance the heights here with the heights in the 
 #game-body-wrapper. */
 #game-body-wrapper:after {
-    bottom: -137px;
-    border-top: 137px solid grey; 
+    bottom: -166px;
+    border-top: 166px solid grey; 
 }
 
 
-/** Wrapper- the border of the game. */ 
+/** The game body */ 
 #game-body {
     position: absolute; 
     
-    height: 262px;
-    width: 456px;
+    height: 324px;
+    width: 561px;
     
     top: 50%;
     left: 50%;
-    margin-top: -131px;
-    margin-left: -228px;
+    margin-top: -162px;
+    margin-left: -280px;
     
     text-align: center; 
     background: black;
@@ -118,32 +139,33 @@ Remember to balance the heights here with the heights in the
     border-bottom: black solid 1px;    
     border-radius: 3px;
 }
-
+/** The game body hex top and bottom. */ 
 #game-body:before, 
 #game-body:after {
     position: absolute;
     left: 50%;
-    margin-left: -228px;
+    margin-left: -280px;
     
     content: " ";
     width: 6px;
     height: 0px;
     
-    border-right: 225px solid transparent; 
-    border-left: 225px solid transparent; 
+    border-right: 277px solid transparent; 
+    border-left: 277px solid transparent; 
     border-radius: 5px;
 }
-
+/** The game body hex top */ 
 #game-body:before {    
-    top: -131px;
-    border-bottom: 131px solid black; 
+    top: -161px;
+    border-bottom: 161px solid black; 
 }
-
+/** The game body hex bottom */ 
 #game-body:after {
-    bottom: -131px;
-    border-top: 131px solid black; 
+    bottom: -161px;
+    border-top: 161px solid black; 
 }
 
+/** ------------------------------------------------------------- */
 
 
 #test-hex1 {
