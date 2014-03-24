@@ -3,7 +3,7 @@
 Calculation for main hexagons:
 (width/2) * tan(30 deg) = triangle height (simple trig)
 
-    version: 0.1.1-20140323
+    version: 0.1.2-20140323
     Created on : Mar 23, 2014, 12:36:20 PM
     Author     : Jason J.
 */
@@ -16,34 +16,42 @@ html, body{
     font-size: 14pt;
 }
 
+input {
+    margin: 10px;
+}
+/** All labels need a pointer. */
 label {
     cursor: pointer;
+    display: inline-block;
+    padding: 10px;
 }
-#header-board * {
+/** All elements align center vertically. */
+#header-board  * {
     line-height: 18pt;
     position: relative;
     display: inline-block;
     vertical-align: middle;
-    
-    
+        
     float: left;
-    margin: 5px;
+    padding: 5px;
 }
+/** Controls to the right. */
 #header-board form {
     float: right;
 }
+/** Custom labels are larger. */
 #header-board .label{
     font-size: 18pt;
 }
+/** Score is to the right of the score divs. */
 #header-board .score{
     float: right;
 }
-
+/** The score ontainer sizes. */
 #header-board #score-best, 
 #header-board #score-current{
     margin-left: 20px;
     width: 150px;
-    text-align: right;
 }
 
 /**
@@ -167,7 +175,174 @@ Remember to balance the heights here with the heights in the
 
 /** ------------------------------------------------------------- */
 
+/**
+ * #.# Button styles
+ *
+ * Here are defined the styles for the light buttons.
+ */
+//
+#button-1 {
+    background: red;
+}
+.row-1, .row-2, .row-3{
+    transform-origin:50% 50%;
+    -ms-transform-origin:50% 50%; /* IE 9 */
+    -webkit-transform-origin:50% 50%; /* Chrome, Safari, Opera */
+    
+    z-index: 5;
+}
 
+.row-1.right-col ,
+.row-3.right-col {
+    position: absolute;
+    right: 50%;
+    margin-right: -127px;
+    
+}
+.row-1.right-col {     
+    transform: rotate(-150deg);
+    -ms-transform: rotate(-150deg); /* IE 9 */
+    -webkit-transform: rotate(-150deg); /* Chrome, Safari, Opera */    
+}
+.row-1.right-col,
+.row-1.right-col .ie8-rotation-fix{
+    /** 
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(
+    M11=cos(θ), M12=-sin(θ), M21=sin(θ), M22=cos(θ), 
+    SizingMethod='auto expand')";
+    */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.6992508065, M12=-0.7148764296, M21=0.7148764296, M22=0.6992508065, SizingMethod='auto expand')";
+}
+.row-3.right-col {     
+    transform: rotate(-30deg);
+    -ms-transform: rotate(-30deg); /* IE 9 */
+    -webkit-transform: rotate(-30deg); /* Chrome, Safari, Opera */    
+}
+.row-3.right-col .ie8-rotation-fix,
+.row-3.right-col {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.1542514499, M12=-0.9880316241, M21=0.9880316241, M22=0.1542514499,SizingMethod='auto expand')";
+}
+.row-1.left-col ,
+.row-3.left-col {
+    position: absolute;
+    left: 50%;
+    margin-left: -127px;
+}
+.row-1.left-col {  
+    transform: rotate(150deg);
+    -ms-transform: rotate(150deg); /* IE 9 */
+    -webkit-transform: rotate(150deg); /* Chrome, Safari, Opera */
+}
+
+.row-1.left-col,
+.row-1.left-col .ie8-rotation-fix {  
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.6992508065, M12=0.7148764296, M21=-0.7148764296, M22=0.6992508065, SizingMethod='auto expand')";
+}
+.row-3.left-col {  
+    transform: rotate(30deg);
+    -ms-transform: rotate(30deg); /* IE 9 */
+    -webkit-transform: rotate(30deg); /* Chrome, Safari, Opera */    
+}
+
+.row-3.left-col ,
+.row-3.left-col .ie8-rotation-fix{
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.1542514499, M12=0.9880316241, M21=-0.9880316241, M22=0.1542514499, SizingMethod='auto expand')";
+}
+
+.row-2.right-col {
+    position: absolute;
+    right: 50%;
+    margin-right: -215px;
+    
+    transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg); /* IE 9 */
+    -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */    
+}
+.row-2.right-col ,
+.row-2.right-col .ie8-rotation-fix{
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=-0.4480736161, M12=0.8939966636, M21=-0.8939966636, M22=-0.4480736161, SizingMethod='auto expand')";
+    z-index: 6;
+}
+.row-2.left-col {
+    position: absolute;
+    left: 50%;
+    margin-left: -215px;
+    
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */    
+}
+
+.row-2.left-col,
+.row-2.left-col .ie8-rotation-fix {
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Matrix(SizingMethod="auto expand", M11=-0.4480736161, M12=-0.8939966636, M21=0.8939966636, M22=-0.4480736161)';
+    z-index: 30; 
+}
+
+.row-1 {
+    position: absolute;
+    top: 50%;
+    margin-top: -250px;  
+}
+.row-2{
+    position: absolute; 
+    top: 50%;
+    margin-top: -100px;    
+}
+.row-3 {
+    position: absolute;
+    bottom: 50%;
+    margin-bottom: -250px;   
+}
+ /** 
+ Height is set to (owidth/2) - 30px for padding .
+ Width is set to x - 10px for padding - y for triangles
+ 
+ x = (owidth/2)/tan(60 deg)
+ y = x - 90 - 10;
+ 
+ height: 336px;
+    width: 582px;
+    
+    top: 50%;
+    left: 50%;
+    margin-top: -168px;
+    margin-left: -291px; */
+.trapezium-button {
+    background: red;
+    content: "";
+    height: 200px;
+    width: 80px;
+    
+    border: 0px blue solid;
+    
+    z-index: 6;   
+}
+
+.trapezium-button-wrapper {
+}
+
+.trapezium-button:before, 
+.trapezium-button:after {
+    position: absolute;
+    top: 0px;
+    content: "";
+    width: 0px;
+    height: 0px;
+    
+    border-top: 200px solid transparent; 
+    
+}
+.trapezium-button:before {
+    left: -114px;
+    border-right: 115px solid red; 
+}
+.trapezium-button:after {
+    right: -114px;
+    border-left: 115px solid red; 
+}
+
+/** ------------------------------------------------------------- */
 #test-hex1 {
     margin: 20px;
     position: relative;
