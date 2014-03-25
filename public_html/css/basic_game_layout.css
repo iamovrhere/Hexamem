@@ -3,7 +3,7 @@
 Calculation for main hexagons:
 (width/2) * tan(30 deg) = triangle height (simple trig)
 
-    version: 0.1.2-20140323
+    version: 0.1.3-20140324
     Created on : Mar 23, 2014, 12:36:20 PM
     Author     : Jason J.
 */
@@ -15,8 +15,8 @@ html, body{
     color: gray;
     font-size: 14pt;
 }
-
-input {
+/** The auto-progress checkbox. */
+input#auto-progress {
     margin: 10px;
 }
 /** All labels need a pointer. */
@@ -180,10 +180,14 @@ Remember to balance the heights here with the heights in the
  *
  * Here are defined the styles for the light buttons.
  */
-//
-#button-1 {
-    background: red;
-}
+
+/**
+ * #.## Button locations
+ *
+ * Here are defined the locations & rotations of the buttons.
+ */
+
+/** Define the origin of all buttons to be their center.  */
 .row-1, .row-2, .row-3{
     transform-origin:50% 50%;
     -ms-transform-origin:50% 50%; /* IE 9 */
@@ -192,6 +196,29 @@ Remember to balance the heights here with the heights in the
     z-index: 5;
 }
 
+/** Define row 1 to be at the appropriate height. */
+.row-1 {
+    position: absolute;
+    top: 50%;
+    margin-top: -250px;  
+    
+}
+/** Define row 2 to be at the appropriate height. */
+.row-2{
+    position: absolute; 
+    top: 50%;
+    margin-top: -100px;    
+    
+    
+}
+/** Define row 3 to be at the appropriate height. */
+.row-3 {
+    position: absolute;
+    bottom: 50%;
+    margin-bottom: -250px;   
+}
+
+/** Define all row 1 and right columns to the right. */
 .row-1.right-col ,
 .row-3.right-col {
     position: absolute;
@@ -199,55 +226,21 @@ Remember to balance the heights here with the heights in the
     margin-right: -127px;
     
 }
-.row-1.right-col {     
-    transform: rotate(-150deg);
-    -ms-transform: rotate(-150deg); /* IE 9 */
-    -webkit-transform: rotate(-150deg); /* Chrome, Safari, Opera */    
-}
-.row-1.right-col,
-.row-1.right-col .ie8-rotation-fix{
-    /** 
-    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(
-    M11=cos(θ), M12=-sin(θ), M21=sin(θ), M22=cos(θ), 
-    SizingMethod='auto expand')";
-    */
-    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.6992508065, M12=-0.7148764296, M21=0.7148764296, M22=0.6992508065, SizingMethod='auto expand')";
-}
-.row-3.right-col {     
-    transform: rotate(-30deg);
-    -ms-transform: rotate(-30deg); /* IE 9 */
-    -webkit-transform: rotate(-30deg); /* Chrome, Safari, Opera */    
-}
-.row-3.right-col .ie8-rotation-fix,
-.row-3.right-col {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.1542514499, M12=-0.9880316241, M21=0.9880316241, M22=0.1542514499,SizingMethod='auto expand')";
-}
+
+/** Define all row 1 and left columns to the left. */
 .row-1.left-col ,
 .row-3.left-col {
     position: absolute;
     left: 50%;
     margin-left: -127px;
 }
-.row-1.left-col {  
-    transform: rotate(150deg);
-    -ms-transform: rotate(150deg); /* IE 9 */
-    -webkit-transform: rotate(150deg); /* Chrome, Safari, Opera */
-}
 
-.row-1.left-col,
-.row-1.left-col .ie8-rotation-fix {  
-    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.6992508065, M12=0.7148764296, M21=-0.7148764296, M22=0.6992508065, SizingMethod='auto expand')";
-}
-.row-3.left-col {  
-    transform: rotate(30deg);
-    -ms-transform: rotate(30deg); /* IE 9 */
-    -webkit-transform: rotate(30deg); /* Chrome, Safari, Opera */    
-}
+/** 
+ * #.### Button style: Appropriate rotations. 
+ *
+ * Apply the appropriate rotations for each row and column.
+ */
 
-.row-3.left-col ,
-.row-3.left-col .ie8-rotation-fix{
-    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.1542514499, M12=0.9880316241, M21=-0.9880316241, M22=0.1542514499, SizingMethod='auto expand')";
-}
 
 .row-2.right-col {
     position: absolute;
@@ -256,13 +249,9 @@ Remember to balance the heights here with the heights in the
     
     transform: rotate(-90deg);
     -ms-transform: rotate(-90deg); /* IE 9 */
-    -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */    
+    -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */        
 }
-.row-2.right-col ,
-.row-2.right-col .ie8-rotation-fix{
-    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=-0.4480736161, M12=0.8939966636, M21=-0.8939966636, M22=-0.4480736161, SizingMethod='auto expand')";
-    z-index: 6;
-}
+
 .row-2.left-col {
     position: absolute;
     left: 50%;
@@ -273,26 +262,42 @@ Remember to balance the heights here with the heights in the
     -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */    
 }
 
-.row-2.left-col,
-.row-2.left-col .ie8-rotation-fix {
-    -ms-filter: 'progid:DXImageTransform.Microsoft.Matrix(SizingMethod="auto expand", M11=-0.4480736161, M12=-0.8939966636, M21=0.8939966636, M22=-0.4480736161)';
-    z-index: 30; 
+/** Define remaining right rotations. */
+.row-1.right-col {     
+    transform: rotate(-150deg);
+    -ms-transform: rotate(-150deg); /* IE 9 */
+    -webkit-transform: rotate(-150deg); /* Chrome, Safari, Opera */    
+}
+.row-3.right-col {     
+    transform: rotate(-30deg);
+    -ms-transform: rotate(-30deg); /* IE 9 */
+    -webkit-transform: rotate(-30deg); /* Chrome, Safari, Opera */    
 }
 
-.row-1 {
-    position: absolute;
-    top: 50%;
-    margin-top: -250px;  
+/** Define left rotations. */
+.row-1.left-col {  
+    transform: rotate(150deg);
+    -ms-transform: rotate(150deg); /* IE 9 */
+    -webkit-transform: rotate(150deg); /* Chrome, Safari, Opera */
 }
-.row-2{
-    position: absolute; 
-    top: 50%;
-    margin-top: -100px;    
+
+
+.row-3.left-col {  
+    transform: rotate(30deg);
+    -ms-transform: rotate(30deg); /* IE 9 */
+    -webkit-transform: rotate(30deg); /* Chrome, Safari, Opera */    
 }
-.row-3 {
-    position: absolute;
-    bottom: 50%;
-    margin-bottom: -250px;   
+
+
+/**
+ * #.## Trapizum Buttons 
+ *
+ * Here are defined the styles for the trapizium button shapes.
+ */
+
+/** Wrapper width is defined as 2 sides + middle: 
+115 * 2 + 80 = 310 */
+.trapezium-button-wrapper {
 }
  /** 
  Height is set to (owidth/2) - 30px for padding .
@@ -301,27 +306,19 @@ Remember to balance the heights here with the heights in the
  x = (owidth/2)/tan(60 deg)
  y = x - 90 - 10;
  
- height: 336px;
-    width: 582px;
-    
-    top: 50%;
-    left: 50%;
-    margin-top: -168px;
-    margin-left: -291px; */
+ where owidth and oheight are the dimentions of the game-body. */
 .trapezium-button {
-    background: red;
     content: "";
     height: 200px;
     width: 80px;
     
-    border: 0px blue solid;
+    /** Default colour. */
+    background: red;
     
     z-index: 6;   
 }
 
-.trapezium-button-wrapper {
-}
-
+/** Defining the left and right pseudo-elements. */
 .trapezium-button:before, 
 .trapezium-button:after {
     position: absolute;
@@ -333,15 +330,63 @@ Remember to balance the heights here with the heights in the
     border-top: 200px solid transparent; 
     
 }
+/** The left triangle. Default colour red; */
 .trapezium-button:before {
     left: -114px;
     border-right: 115px solid red; 
 }
+/** The right triangle. Default colour red; */
 .trapezium-button:after {
     right: -114px;
     border-left: 115px solid red; 
 }
 
+/**
+ * #.## Image map hack.
+ *
+ * Allows the image map to be used to define clicking areas.
+ */
+.map-hack {
+    position: absolute;
+    
+    top: -166px;
+    left: 50%;
+    margin-left: -50%;
+    
+    /** Same height defined by game body. */
+    height: 656px;
+    width: 100%;
+    
+    /** Ensure the the map is clickable. */
+    z-index: 99;
+    
+    background: none;    
+}
+
+/** ------------------------------------------------------------- */
+
+/**
+ * #.## Button colours.
+ *
+ * Define the button colours.
+ */
+#button-1 {
+}
+
+#button-2 {
+}
+
+#button-3 {
+}
+
+#button-4 {
+}
+
+#button-5 {
+}
+
+#button-6 {
+}
 /** ------------------------------------------------------------- */
 #test-hex1 {
     margin: 20px;

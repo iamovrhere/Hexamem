@@ -1,0 +1,61 @@
+/* Must be preceded by basic_game_layout.css
+
+    Created on : Mar 24, 2014, 6:50:10 AM
+    Author     : Jason J.
+    Version: 0.1.0-20140324
+*/
+
+/** Wrapper width is defined as 2 sides + middle: 
+115 * 2 + 80 = 310 */
+.trapezium-button-wrapper {
+    width: 310px;
+    height: 200px;
+    
+    background: blue;
+    border: 3px blue solid;
+}
+
+.trapezium-button {
+    position: absolute;
+    left: 50%;
+    margin-left: -40px;
+}
+
+/** @TODO Define the IE positioning to handle the DOM + rotations. */
+
+.row-1, .row-3, .row-2 {
+    z-index: 10; 
+}
+
+/** Rotate -150deg around center --> */
+.row-1.right-col{
+    /** Note: Roatations occur around 0,0.
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(
+    M11=cos(θ), M12=-sin(θ), M21=sin(θ), M22=cos(θ), 
+    SizingMethod='auto expand')";
+    */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=-0.8660254038, M12=0.5, M21=-0.5, M22=-0.8660254038, SizingMethod='auto expand')";
+}
+/** Rotate 150deg around center --> */
+.row-1.left-col {  
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=-0.8660254038, M12=-0.5, M21=0.5, M22=-0.8660254038, SizingMethod='auto expand')";
+}
+
+/** Rotate -30deg around center --> */
+.row-3.right-col {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.8660254038, M12=0.5, M21=-0.5, M22=0.8660254038, SizingMethod='auto expand')";
+}
+/** Rotate 30deg around center --> */
+.row-3.left-col {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.8660254038, M12=-0.5, M21=0.5, M22=0.8660254038, SizingMethod='auto expand')";
+}
+
+/** Rotate -90deg around center --> */
+.row-2.right-col {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0, M12=1, M21=-1, M22=0, SizingMethod='auto expand')";
+}
+
+/** Rotate 90deg around center --> */
+.row-2.left-col {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0, M12=-1, M21=1, M22=0, SizingMethod='auto expand')";
+}

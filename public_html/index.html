@@ -11,9 +11,9 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         
         <link type="text/css" rel="stylesheet" href="css/basic_game_layout.css" />
-        <style type='text/css'>
-            .row-2.left-col, .test3 { -ms-filter: 'progid:DXImageTransform.Microsoft.Matrix(sizingMethod="auto expand", M11=0.9886188373396114, M12=-0.15044199698646263, M21=0.15044199698646263, M22=0.9886188373396114)' ;}
-        </style>
+        <!--[if IE 8 ]>    
+        <link type="text/css" rel="stylesheet" href="css/ie8_compatibility.css" />   
+        <![endif]-->
     </head>
     <body>
         <div id="header-board">
@@ -35,6 +35,7 @@
         </div>
         <div id="game-body-wrapper" >
             <div id="game-body">
+                <img class="map-hack"  src="data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" usemap="#button-map" />
                 <div id="button-1-wrapper" class="row-1 right-col trapezium-button-wrapper" >
                     <div id="button-1" class="trapezium-button" ></div>
                 </div>
@@ -58,17 +59,27 @@
                 
                 <div id="button-6-wrapper" class="row-3 left-col trapezium-button-wrapper" >
                     <div id="button-6" class="trapezium-button" ></div>
-                </div>
-                
+                </div>                
             </div>
         </div>  
+        <map name="button-map">
+
+   <!-- <area id="full-area" shape="rect" coords="0,0,1000,1000" 
+                  href="javascript:void(0);" alt="Button" 
+                  onclick="alert('button:'+event.clientX+','+event.clientY)"   /> -->
+        <area id="button-area-1" shape="poly" coords="285,15,285,244,350,285,548,170" 
+              alt="Button" href="javascript:void(0);" />
+        <area id="button-area-2" shape="poly" coords="354,290,555,175,555,480,354,362"
+              alt="Button" href="javascript:void(0);"  />
+        <area id="button-area-3" shape="poly" coords="348,372,548,487,282,640,284,410" 
+              alt="Button" href="javascript:void(0);"  />
         
-    <div class="test3" style="background: white;z-index: 30; position:absolute; top:200px; left:200px; height:200px; width:100px; border:1px solid black;" >
-        <div  style=" margin-top:10px; margin-left:20px; border:1px solid darkblue;">
-            I do not rotate in IE 8.
-            <div style="margin-left:-10px; z-index: 3; position: absolute; width: 0px; border-left: 10px blue solid; border-top: 40px solid transparent;">item 2</div>
-        </div>
-        
-    </div>
+        <area id="button-area-4" shape="poly" coords="212,374,275,408,275,639,14,488" 
+              alt="Button" href="javascript:void(0);"  />
+        <area id="button-area-5" shape="poly" coords="199,290,8,175,8,480,199,362"  
+              alt="Button" href="javascript:void(0);"  />
+        <area id="button-area-6" shape="poly" coords="10,170,208,285,275,244,275,15"  
+              alt="Button" href="javascript:void(0);"   />
+        </map>  
     </body>
 </html>
