@@ -3,7 +3,7 @@
 Calculation for main hexagons:
 (width/2) * tan(30 deg) = triangle height (simple trig)
 
-    version: 0.1.3-20140324
+    version: 0.2.0-20140325
     Created on : Mar 23, 2014, 12:36:20 PM
     Author     : Jason J.
 */
@@ -314,8 +314,7 @@ Remember to balance the heights here with the heights in the
     
     /** Default colour. */
     background: red;
-    
-    z-index: 6;   
+      
 }
 
 /** Defining the left and right pseudo-elements. */
@@ -365,112 +364,156 @@ Remember to balance the heights here with the heights in the
 
 /** ------------------------------------------------------------- */
 
+/** 
+ * * #.## Lumenescence
+ *
+ * Defines the attributes of the glowiness of the buttons. 
+ */
+
+.trapezium-button {
+      /* IE 8 */
+   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+   /* IE 5-7 */
+   filter: alpha(opacity=70);
+   /* Safari 1.x */
+   -khtml-opacity: 0.70;
+   /* Good browsers */
+   opacity: 0.70;
+   
+}
+/* Set the button to be in front. */
+.trapezium-button,
+.trapezium-button:before,
+.trapezium-button:after {
+   z-index: 5;
+}
+/** Main backlight at the back. */
+.main-backlight.trapezium-button,
+.main-backlight.trapezium-button:before,
+.main-backlight.trapezium-button:after {
+   z-index: -2;
+}
+/** Bulb backlight in front of that. */
+.bulb-backlight {
+    z-index: -1;
+}
+
+/** The white background, 
+ * Relies on the trapezium being translucent. */
+.main-backlight.trapezium-button {
+    display: block;
+    position: absolute;
+    background: white;
+    
+    /* IE 8 */
+   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+   /* IE 5-7 */
+   filter: alpha(opacity=10);
+   /* Safari 1.x */
+   -khtml-opacity: 0.10;
+   /* Good browsers */
+   opacity: 0.10;
+}
+.main-backlight.trapezium-button:before {
+    border-right-color: white; 
+}
+.main-backlight.trapezium-button:after {
+    border-left-color: white; 
+}
+
+/** The "bulb" backlight for producing a nice spot effect. */
+.bulb-backlight {
+    position: absolute;
+    
+    bottom: 0%;
+    left: 50%;  
+    
+    margin-left: -125px;
+    
+    height: 120px;
+    width: 250px;
+    
+    /* IE 8 */
+   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   /* IE 5-7 */
+   filter: alpha(opacity=0);
+   /* Safari 1.x */
+   -khtml-opacity: 0.0;
+   /* Good browsers */
+   opacity: 0.0;
+   
+    background: none;
+    
+    background-image:
+    radial-gradient(
+      ellipse closest-side,
+      white,
+      transparent
+    );    
+}
+
 /**
  * #.## Button colours.
  *
- * Define the button colours.
+ * Define the button colours in a clockwise fashion.
  */
 #button-1 {
+    background: red;
+}
+#button-1.trapezium-button:before {
+    border-right-color: red; 
+}
+#button-1.trapezium-button:after {
+    border-left-color: red; 
 }
 
 #button-2 {
+    background: orange;
+}
+#button-2.trapezium-button:before {
+    border-right-color: orange; 
+}
+#button-2.trapezium-button:after {
+    border-left-color: orange; 
 }
 
 #button-3 {
+    background: yellow;
+}
+#button-3.trapezium-button:before {
+    border-right-color: yellow; 
+}
+#button-3.trapezium-button:after {
+    border-left-color: yellow; 
 }
 
 #button-4 {
+    background: green;
+}
+#button-4.trapezium-button:before {
+    border-right-color: green; 
+}
+#button-4.trapezium-button:after {
+    border-left-color: green; 
 }
 
 #button-5 {
+    background: blue;
+}
+#button-5.trapezium-button:before {
+    border-right-color: blue; 
+}
+#button-5.trapezium-button:after {
+    border-left-color: blue; 
 }
 
 #button-6 {
+    background: purple;
+}
+#button-6.trapezium-button:before {
+    border-right-color: purple; 
+}
+#button-6.trapezium-button:after {
+    border-left-color: purple; 
 }
 /** ------------------------------------------------------------- */
-#test-hex1 {
-    margin: 20px;
-    position: relative;
-    border-top: red solid 1px;
-    border-bottom: red solid 1px;
-    background: green;
-    
-    height: 30px;
-    width: 40px;
-}
-
-#test-hex1:before{
-    border-bottom-color: red;
-}
-#test-hex1:after {    
-    border-top-color: red;
-}
-
-
-.vertical-point-hexagon:before {
-    position: absolute;
-    top: -20px;
-    
-    content: " ";
-    width: 0px;
-    height: 0px;
-    
-    border-bottom: 20px solid; 
-    border-right: 20px solid transparent; 
-    border-left: 20px solid transparent; 
-}
-
-.vertical-point-hexagon:after {
-    position: absolute;
-    bottom: -20px;
-    
-    width: 0px;
-    height: 0px;
-    content: " ";
-    
-    border-top: 20px solid; 
-    border-right: 20px solid transparent; 
-    border-left: 20px solid transparent; 
-}
-
-
-
-#test-hex2 {
-    margin: 20px;
-    position: relative;
-    border-top: blueviolet solid 1px;
-    border-bottom: blueviolet solid 1px;
-    background: blue;
-    
-    height: 50px;
-    width: 40px;
-}
-
-#test-hex2:before,
-#test-hex2:after { 
-    border-left-color: blueviolet;
-    border-right-color: blueviolet;
-       
-    
-}
-
-.vertical-mask-hexagon:before,
-.vertical-mask-hexagon:after {
-    position: absolute;
-        
-    width: 0px;
-    height: 0px;
-    content: " ";
-    border-right: 20px solid; 
-    border-left: 20px solid; 
-}
-.vertical-mask-hexagon:before {
-    border-bottom: 20px solid transparent;
-}
-
-.vertical-mask-hexagon:after {    
-    bottom: 0px;
-    border-top: 20px solid transparent;    
-}
-
-
