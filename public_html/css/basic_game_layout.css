@@ -3,7 +3,7 @@
 Calculation for main hexagons:
 (width/2) * tan(30 deg) = triangle height (simple trig)
 
-    version: 0.2.0-20140325
+    version: 0.3.0-20140325
     Created on : Mar 23, 2014, 12:36:20 PM
     Author     : Jason J.
 */
@@ -444,76 +444,12 @@ Remember to balance the heights here with the heights in the
    
     background: none;
     
-    background-image:
-    radial-gradient(
-      ellipse closest-side,
-      white,
-      transparent
-    );    
+    background-image: radial-gradient(
+                        ellipse closest-side,
+                        white,
+                        transparent
+                      );    
 }
 
-/**
- * #.## Button colours.
- *
- * Define the button colours in a clockwise fashion.
- */
-#button-1 {
-    background: red;
-}
-#button-1.trapezium-button:before {
-    border-right-color: red; 
-}
-#button-1.trapezium-button:after {
-    border-left-color: red; 
-}
 
-#button-2 {
-    background: orange;
-}
-#button-2.trapezium-button:before {
-    border-right-color: orange; 
-}
-#button-2.trapezium-button:after {
-    border-left-color: orange; 
-}
-
-#button-3 {
-    background: yellow;
-}
-#button-3.trapezium-button:before {
-    border-right-color: yellow; 
-}
-#button-3.trapezium-button:after {
-    border-left-color: yellow; 
-}
-
-#button-4 {
-    background: green;
-}
-#button-4.trapezium-button:before {
-    border-right-color: green; 
-}
-#button-4.trapezium-button:after {
-    border-left-color: green; 
-}
-
-#button-5 {
-    background: blue;
-}
-#button-5.trapezium-button:before {
-    border-right-color: blue; 
-}
-#button-5.trapezium-button:after {
-    border-left-color: blue; 
-}
-
-#button-6 {
-    background: purple;
-}
-#button-6.trapezium-button:before {
-    border-right-color: purple; 
-}
-#button-6.trapezium-button:after {
-    border-left-color: purple; 
-}
 /** ------------------------------------------------------------- */

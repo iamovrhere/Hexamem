@@ -1,0 +1,92 @@
+/* 
+    Contains the styles for the 6 button colours and animations.
+    This includes special backlight highlighting for he 
+    Created on : Mar 25, 2014, 8:17:39 PM
+    Author     : Jason J.
+    Version: 0.1.0-20140325
+*/
+
+#button-1-wrapper{
+   /*  perspective: 1000px;
+    transform-style: preserve-3d;
+    
+   /** child element * /
+     background-image: 
+    repeating-linear-gradient(
+      0deg,
+      yellow,
+      yellow 20px,
+      red 20px,
+      red 40px /* determines size * /
+    );
+     
+  width: 120px;
+  height: 1000px;
+  transform: rotateX(80deg); */
+}
+/**
+ * #.## Button colours.
+ *
+ * Define the button colours in a clockwise fashion.
+ */
+#button-1 {
+    background: red;
+    
+     
+}
+#button-1.trapezium-button:before {
+    border-right-color: red; 
+}
+#button-1.trapezium-button:after {
+    border-left-color: red; 
+}
+
+#button-2 {
+    background: orange;
+}
+#button-2.trapezium-button:before {
+    border-right-color: orange; 
+}
+#button-2.trapezium-button:after {
+    border-left-color: orange; 
+}
+
+#button-3 {
+    background: yellow;
+}
+#button-3.trapezium-button:before {
+    border-right-color: yellow; 
+}
+#button-3.trapezium-button:after {
+    border-left-color: yellow; 
+}
+
+#button-4 {
+    background: green;
+}
+#button-4.trapezium-button:before {
+    border-right-color: green; 
+}
+#button-4.trapezium-button:after {
+    border-left-color: green; 
+}
+
+#button-5 {
+    background: blue;
+}
+#button-5.trapezium-button:before {
+    border-right-color: blue; 
+}
+#button-5.trapezium-button:after {
+    border-left-color: blue; 
+}
+
+#button-6 {
+    background: purple;
+}
+#button-6.trapezium-button:before {
+    border-right-color: purple; 
+}
+#button-6.trapezium-button:after {
+    border-left-color: purple; 
+}
