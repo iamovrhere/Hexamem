@@ -1,7 +1,6 @@
 /* Contains all the animations for the game.
-    Created on : Mar 26, 2014, 6:20:55 AM
     Author     : Jason J.
-    Version    : 0.1.0-20140326
+    Version    : 0.2.0-20140328
 */
 
 /**
@@ -9,24 +8,38 @@
  *
  * Defines the flashing animations for the buttons via backlights.
  */
+.flash-normal, .flash-med-fast, .flash-fast {
+    animation-iteration-count: 1;
+}
+
 .flash-normal .main-backlight{
-    animation: cycle-main-backlight-opacity 0.8s infinite;
-    -webkit-animation: cycle-main-backlight-opacity 0.8s infinite;
+    animation: cycle-main-backlight-opacity 0.8s ;
+    -webkit-animation: cycle-main-backlight-opacity 0.8s ;
+}
+
+.flash-med-fast .main-backlight{
+    animation: cycle-main-backlight-opacity 0.6s ;
+    -webkit-animation: cycle-main-backlight-opacity 0.6s ;
 }
 
 .flash-fast .main-backlight{
-    animation: cycle-main-backlight-opacity 0.4s infinite;
-    -webkit-animation: cycle-main-backlight-opacity 0.4s infinite;
+    animation: cycle-main-backlight-opacity 0.4s;
+    -webkit-animation: cycle-main-backlight-opacity 0.4s;
 }
 
 .flash-normal .bulb-backlight{
-    animation: cycle-bulb-backlight-opacity 0.8s infinite;
-    -webkit-animation: cycle-bulb-backlight-opacity 0.8s infinite;
+    animation: cycle-bulb-backlight-opacity 0.8s;
+    -webkit-animation: cycle-bulb-backlight-opacity 0.8s;
+}
+
+.flash-med-fast .bulb-backlight{
+    animation: cycle-bulb-backlight-opacity 0.6s;
+    -webkit-animation: cycle-bulb-backlight-opacity 0.6s;
 }
 
 .flash-fast .bulb-backlight{
-    animation: cycle-bulb-backlight-opacity 0.4s infinite;
-    -webkit-animation: cycle-bulb-backlight-opacity 0.4s infinite;
+    animation: cycle-bulb-backlight-opacity 0.4s;
+    -webkit-animation: cycle-bulb-backlight-opacity 0.4s;
 }
 
 
