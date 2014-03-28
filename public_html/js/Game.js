@@ -3,7 +3,7 @@ if (!HexamemEngine){
 }
 /**
  * Creates a new game with an empty game.
- * @version 0.1.0-20140327
+ * @version 0.1.0-20140326
  * @author Jason J.
  * @type Game
  * @returns {Game}
