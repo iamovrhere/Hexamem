@@ -3,7 +3,7 @@
     This includes special backlight highlighting for he 
     Created on : Mar 25, 2014, 8:17:39 PM
     Author     : Jason J.
-    Version: 0.1.0-20140325
+    Version: 0.2.0-20140326
 */
 
 #button-1-wrapper{
@@ -25,68 +25,137 @@
   transform: rotateX(80deg); */
 }
 /**
- * #.## Button colours.
+ * #.# Button colours.
  *
  * Define the button colours in a clockwise fashion.
  */
 #button-1 {
-    background: red;
-    
-     
+    /** Dark red. */
+    background: #dc0700;        
 }
 #button-1.trapezium-button:before {
-    border-right-color: red; 
+    border-right-color: #dc0700; 
 }
 #button-1.trapezium-button:after {
-    border-left-color: red; 
+    border-left-color: #dc0700; 
+}
+/** Lightish red. */
+#button-1-wrapper .main-backlight {
+    background: #fe2a2a;
+}
+#button-1-wrapper .main-backlight:before {
+    border-right-color: #fe2a2a;
+}
+#button-1-wrapper .main-backlight:after {
+    border-left-color: #fe2a2a;
 }
 
 #button-2 {
-    background: orange;
+    /** Dark orange. */
+    background: #dca900;
 }
 #button-2.trapezium-button:before {
-    border-right-color: orange; 
+    border-right-color: #dca900; 
 }
 #button-2.trapezium-button:after {
-    border-left-color: orange; 
+    border-left-color: #dca900; 
+}
+/** Lightish orange. */
+#button-2-wrapper .main-backlight {
+    background: #fe8a2a;
+}
+#button-2-wrapper .main-backlight:before {
+    border-right-color: #fe8a2a;
+}
+#button-2-wrapper .main-backlight:after {
+    border-left-color: #fe8a2a;
 }
 
 #button-3 {
-    background: yellow;
+    /** Dark yellow. */
+    background: #dcdc00;
 }
 #button-3.trapezium-button:before {
-    border-right-color: yellow; 
+    border-right-color: #dcdc00; 
 }
 #button-3.trapezium-button:after {
-    border-left-color: yellow; 
+    border-left-color: #dcdc00; 
+}
+/** Lightish yellow. */
+#button-3-wrapper .main-backlight {
+    background: #fefa2a;
+}
+#button-3-wrapper .main-backlight:before {
+    border-right-color: #fefa2a;
+}
+#button-3-wrapper .main-backlight:after {
+    border-left-color: #fefa2a;
 }
 
 #button-4 {
-    background: green;
+    /** Dark green. */
+    background: #008209;
 }
 #button-4.trapezium-button:before {
-    border-right-color: green; 
+    border-right-color: #008209; 
 }
 #button-4.trapezium-button:after {
-    border-left-color: green; 
+    border-left-color: #008209; 
+}
+/** Lightish green. */
+#button-4-wrapper .main-backlight {
+    background: #41fe2a;
+}
+#button-4-wrapper .main-backlight:before {
+    border-right-color: #41fe2a;
+}
+#button-4-wrapper .main-backlight:after {
+    border-left-color: #41fe2a;
 }
 
 #button-5 {
-    background: blue;
+    /*Dark Blue. */
+    background: #0029dc;
 }
 #button-5.trapezium-button:before {
-    border-right-color: blue; 
+    border-right-color: #0029dc; 
 }
 #button-5.trapezium-button:after {
-    border-left-color: blue; 
+    border-left-color: #0029dc; 
+}
+/** Lightish blue. */
+#button-5-wrapper .main-backlight {
+    background: #2a4ffe;
+}
+#button-5-wrapper .main-backlight:before {
+    border-right-color: #2a4ffe;
+}
+#button-5-wrapper .main-backlight:after {
+    border-left-color: #2a4ffe;
 }
 
 #button-6 {
-    background: purple;
+    /** Dark purple. */
+    background: #5d0082;
 }
 #button-6.trapezium-button:before {
-    border-right-color: purple; 
+    border-right-color: #5d0082; 
 }
 #button-6.trapezium-button:after {
-    border-left-color: purple; 
+    border-left-color: #5d0082; 
 }
+/** Lightish purple. */
+#button-5-wrapper .main-backlight {
+    background: #b22afe;
+}
+#button-5-wrapper .main-backlight:before {
+    border-right-color: #b22afe;
+}
+#button-5-wrapper .main-backlight:after {
+    border-left-color: #b22afe;
+}
+
+/** ------------------------------------------------------------- */
+
+
+

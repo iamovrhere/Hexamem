@@ -10,13 +10,14 @@
         <meta name="viewport" content="width=device-width, , initial-scale=1, maximum-scale=1" />        
         <meta name="apple-mobile-web-app-capable" content="yes" />
         
-        <link type="text/css" rel="stylesheet" href="css/basic_game_layout.css" />
-        <link type="text/css" rel="stylesheet" href="css/button_colours.css" />
+        <link type="text/css" rel="stylesheet" href="css/basic_game_layout.css?154" />
+        <link type="text/css" rel="stylesheet" href="css/button_colours.css?654" />
+        <link type="text/css" rel="stylesheet" href="css/animations.css?6543" />
         <!--[if IE 8 ]>    
         <link type="text/css" rel="stylesheet" href="css/ie8_compatibility.css" />   
         <![endif]-->
     </head>
-    <body>
+    <body >
         <div id="header-board">
             <div id="score-best" >
                 <span class="label">Best: </span>
@@ -32,49 +33,51 @@
                 <label for="auto-progress" id="auto-progress-label" >
                     Auto-Progress
                 </label>
+                <input id='reset-button' type="button" name='reset-button' value='Reset' />
             </form>
         </div>
         <div id="game-body-wrapper" >
             <div id="game-body">
                 <img class="map-hack"  src="data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" usemap="#button-map" />
-                <div id="button-1-wrapper" class="row-1 right-col trapezium-button-wrapper" >
+                <div id="button-1-wrapper" class="row-1 right-col trapezium-button-wrapper " >
                     <div class="bulb-backlight" ></div>
                     <div class="main-backlight trapezium-button" ></div>
                     <div id="button-1" class="trapezium-button" ></div>
                 </div>          
-                <div id="button-2-wrapper" class="row-2 right-col trapezium-button-wrapper" >
+                <div id="button-2-wrapper" class="row-2 right-col trapezium-button-wrapper " >
                     <div class="bulb-backlight" ></div>
                     <div class="main-backlight trapezium-button" ></div>
                     <div id="button-2" class="trapezium-button" ></div>
                 </div>          
-                <div id="button-3-wrapper" class="row-3 right-col trapezium-button-wrapper" >
+                <div id="button-3-wrapper" class="row-3 right-col trapezium-button-wrapper " >
                     <div class="bulb-backlight" ></div>
                     <div class="main-backlight trapezium-button" ></div>
                     <div id="button-3" class="trapezium-button" ></div>
                 </div>
                                                 
-                <div id="button-4-wrapper" class="row-3 left-col trapezium-button-wrapper">
+                <div id="button-4-wrapper" class="row-3 left-col trapezium-button-wrapper ">
                     <div class="bulb-backlight" ></div>
                     <div class="main-backlight trapezium-button" ></div>
                     <div id="button-4" class="trapezium-button"></div>
                 </div>
-                <div id="button-5-wrapper" class="row-2 left-col trapezium-button-wrapper">
+                <div id="button-5-wrapper" class="row-2 left-col trapezium-button-wrapper ">
                     <div class="bulb-backlight" ></div>
                     <div class="main-backlight trapezium-button" ></div>
                     <div id="button-5" class="trapezium-button"></div>                    
                 </div>
-                <div id="button-6-wrapper" class="row-1 left-col trapezium-button-wrapper" >
+                <div id="button-6-wrapper" class="row-1 left-col trapezium-button-wrapper " >
                     <div class="bulb-backlight" ></div>
                     <div class="main-backlight trapezium-button" ></div>
                     <div id="button-6" class="trapezium-button" ></div>                   
                 </div>                
             </div>
         </div>  
-        <map name="button-map">
-
+        <map name="button-map">            
    <!-- <area id="full-area" shape="rect" coords="0,0,1000,1000" 
                   href="javascript:void(0);" alt="Button" 
                   onclick="alert('button:'+event.clientX+','+event.clientY)"   /> -->
+        <area id='middle-button' shape="circle" coords="281,328,70" 
+              alt="Button" href="javascript:void(0);" />
         <area id="button-area-1" shape="poly" coords="285,15,285,244,350,285,548,170" 
               alt="Button" href="javascript:void(0);" />
         <area id="button-area-2" shape="poly" coords="354,290,555,175,555,480,354,362"

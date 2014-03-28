@@ -1,0 +1,261 @@
+/* Contains all the animations for the game.
+    Created on : Mar 26, 2014, 6:20:55 AM
+    Author     : Jason J.
+    Version    : 0.1.0-20140326
+*/
+
+/**
+ * #.# Button animations.
+ *
+ * Defines the flashing animations for the buttons via backlights.
+ */
+.flash-normal .main-backlight{
+    animation: cycle-main-backlight-opacity 0.8s infinite;
+    -webkit-animation: cycle-main-backlight-opacity 0.8s infinite;
+}
+
+.flash-fast .main-backlight{
+    animation: cycle-main-backlight-opacity 0.4s infinite;
+    -webkit-animation: cycle-main-backlight-opacity 0.4s infinite;
+}
+
+.flash-normal .bulb-backlight{
+    animation: cycle-bulb-backlight-opacity 0.8s infinite;
+    -webkit-animation: cycle-bulb-backlight-opacity 0.8s infinite;
+}
+
+.flash-fast .bulb-backlight{
+    animation: cycle-bulb-backlight-opacity 0.4s infinite;
+    -webkit-animation: cycle-bulb-backlight-opacity 0.4s infinite;
+}
+
+
+
+/** ------------------------------------------------------------- */
+
+/**
+ * #.# Actual animations.
+ *
+ * The actual animations with browser prefixing. 
+ */
+/** Partial opacity cycle. */
+@keyframes cycle-main-backlight-opacity {
+    0% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.05;
+        /* Good browsers */
+        opacity: 0.05;
+    }
+    40%{
+        /* Safari 1.x */
+        -khtml-opacity: 0.6;
+        /* Good browsers */
+        opacity: 0.6;
+    }
+    60% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.7;
+        /* Good browsers */
+        opacity: 0.7;
+    }
+    100% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.05;
+        /* Good browsers */
+        opacity: 0.05;
+    }
+}
+
+@-webkit-keyframes cycle-main-backlight-opacity {
+    0% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.05;
+        /* Good browsers */
+        opacity: 0.05;
+    }
+    40%{
+        /* Safari 1.x */
+        -khtml-opacity: 0.6;
+        /* Good browsers */
+        opacity: 0.6;
+    }
+    60% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.7;
+        /* Good browsers */
+        opacity: 0.7;
+    }
+    100% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.05;
+        /* Good browsers */
+        opacity: 0.05;
+    }    
+}
+
+@-moz-keyframes cycle-main-backlight-opacity {
+    0% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.05;
+        /* Good browsers */
+        opacity: 0.05;
+    }
+    40%{
+        /* Safari 1.x */
+        -khtml-opacity: 0.6;
+        /* Good browsers */
+        opacity: 0.6;
+    }
+    60% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.7;
+        /* Good browsers */
+        opacity: 0.7;
+    }
+    100% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.05;
+        /* Good browsers */
+        opacity: 0.05;
+    }    
+}
+
+@-o-keyframes  cycle-main-backlight-opacity{
+    0% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.05;
+        /* Good browsers */
+        opacity: 0.05;
+    }
+    40%{
+        /* Safari 1.x */
+        -khtml-opacity: 0.5;
+        /* Good browsers */
+        opacity: 0.5;
+    }
+    60% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.6;
+        /* Good browsers */
+        opacity: 0.6;
+    }
+    100% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.05;
+        /* Good browsers */
+        opacity: 0.05;
+    }    
+}
+
+/** ------------------------------------------------------------- */
+
+/** Full opacity cycle. */
+@keyframes cycle-bulb-backlight-opacity {
+    0% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.0;
+        /* Good browsers */
+        opacity: 0.0;
+    }
+    40%{
+        /* Safari 1.x */
+        -khtml-opacity: 0.90;
+        /* Good browsers */
+        opacity: 0.90;
+    }
+    60% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.95;
+        /* Good browsers */
+        opacity: 0.95;
+    }
+    100% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.0;
+        /* Good browsers */
+        opacity: 0.0;
+    }     
+}
+
+@-webkit-keyframes cycle-bulb-backlight-opacity {
+    0% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.0;
+        /* Good browsers */
+        opacity: 0.0;
+    }
+    40%{
+        /* Safari 1.x */
+        -khtml-opacity: 0.90;
+        /* Good browsers */
+        opacity: 0.90;
+    }
+    60% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.95;
+        /* Good browsers */
+        opacity: 0.95;
+    }
+    100% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.0;
+        /* Good browsers */
+        opacity: 0.0;
+    }   
+}
+
+@-moz-keyframes cycle-bulb-backlight-opacity {
+    0% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.0;
+        /* Good browsers */
+        opacity: 0.0;
+    }
+    40%{
+        /* Safari 1.x */
+        -khtml-opacity: 0.90;
+        /* Good browsers */
+        opacity: 0.90;
+    }
+    60% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.95;
+        /* Good browsers */
+        opacity: 0.95;
+    }
+    100% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.0;
+        /* Good browsers */
+        opacity: 0.0;
+    }    
+}
+
+@-o-keyframes  cycle-bulb-backlight-opacity{
+    0% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.0;
+        /* Good browsers */
+        opacity: 0.0;
+    }
+    40%{
+        /* Safari 1.x */
+        -khtml-opacity: 0.90;
+        /* Good browsers */
+        opacity: 0.90;
+    }
+    60% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.95;
+        /* Good browsers */
+        opacity: 0.95;
+    }
+    100% {
+        /* Safari 1.x */
+        -khtml-opacity: 0.0;
+        /* Good browsers */
+        opacity: 0.0;
+    }     
+}
+
+/** ------------------------------------------------------------- */

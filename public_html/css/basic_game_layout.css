@@ -3,7 +3,7 @@
 Calculation for main hexagons:
 (width/2) * tan(30 deg) = triangle height (simple trig)
 
-    version: 0.3.0-20140325
+    version: 0.3.1-20140326
     Created on : Mar 23, 2014, 12:36:20 PM
     Author     : Jason J.
 */
@@ -131,6 +131,8 @@ Remember to balance the heights here with the heights in the
 /** The game body */ 
 #game-body {
     position: absolute; 
+    
+    -webkit-transform: translateZ(0);
     
     height: 324px;
     width: 561px;
@@ -377,6 +379,8 @@ Remember to balance the heights here with the heights in the
    filter: alpha(opacity=70);
    /* Safari 1.x */
    -khtml-opacity: 0.70;
+   /* Older than Firefox 0.9 */
+   -moz-opacity: 0.70;
    /* Good browsers */
    opacity: 0.70;
    
@@ -406,13 +410,15 @@ Remember to balance the heights here with the heights in the
     background: white;
     
     /* IE 8 */
-   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=05)";
    /* IE 5-7 */
-   filter: alpha(opacity=10);
+   filter: alpha(opacity=05);
    /* Safari 1.x */
-   -khtml-opacity: 0.10;
+   -khtml-opacity: 0.05;
+   /* Older than Firefox 0.9 */
+   -moz-opacity: 0.05;
    /* Good browsers */
-   opacity: 0.10;
+   opacity: 0.05;
 }
 .main-backlight.trapezium-button:before {
     border-right-color: white; 
@@ -439,15 +445,17 @@ Remember to balance the heights here with the heights in the
    filter: alpha(opacity=0);
    /* Safari 1.x */
    -khtml-opacity: 0.0;
+   /* Older than Firefox 0.9 */
+   -moz-opacity: 0.0;
    /* Good browsers */
    opacity: 0.0;
    
-    background: none;
+   background: none;
     
-    background-image: radial-gradient(
+   background-image: radial-gradient(
                         ellipse closest-side,
                         white,
-                        transparent
+                        rgba(255,255,255,0)
                       );    
 }
 
