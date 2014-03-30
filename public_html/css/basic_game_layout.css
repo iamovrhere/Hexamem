@@ -3,11 +3,17 @@
 Calculation for main hexagons:
 (width/2) * tan(30 deg) = triangle height (simple trig)
 
-    version: 0.3.1-20140326
+    version: 0.3.2-20140328
     Created on : Mar 23, 2014, 12:36:20 PM
     Author     : Jason J.
 */
 html, body{
+    /** Remove the click colour on ipads. */
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+    -webkit-touch-callout: none;
+    /* Disable selection/copy in UIWebView */
+    -webkit-user-select: none; 
+    
     height: 100%;
     background: #000;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;

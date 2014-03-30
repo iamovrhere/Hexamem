@@ -1,6 +1,6 @@
 /* Contains all the animations for the game.
     Author     : Jason J.
-    Version    : 0.2.0-20140328
+    Version    : 0.2.1-20140329
 */
 
 /**
@@ -8,8 +8,14 @@
  *
  * Defines the flashing animations for the buttons via backlights.
  */
-.flash-normal, .flash-med-fast, .flash-fast {
+/** All animates are to be done once per showing. */
+.flash-super-slow, .flash-normal, .flash-med-fast, .flash-fast, .flash-super-fast {
     animation-iteration-count: 1;
+}
+/** The main backlights. */
+.flash-super-slow .main-backlight{
+    animation: cycle-main-backlight-opacity 2.8s ;
+    -webkit-animation: cycle-main-backlight-opacity 2.8s ;
 }
 
 .flash-normal .main-backlight{
@@ -27,6 +33,17 @@
     -webkit-animation: cycle-main-backlight-opacity 0.4s;
 }
 
+.flash-super-fast .main-backlight{
+    animation: cycle-main-backlight-opacity 0.2s;
+    -webkit-animation: cycle-main-backlight-opacity 0.2s;
+}
+
+/** Backlight bulb flashes*/
+.flash-super-slow .bulb-backlight{
+    animation: cycle-bulb-backlight-opacity 2.8s;
+    -webkit-animation: cycle-bulb-backlight-opacity 2.8s;
+}
+
 .flash-normal .bulb-backlight{
     animation: cycle-bulb-backlight-opacity 0.8s;
     -webkit-animation: cycle-bulb-backlight-opacity 0.8s;
@@ -42,6 +59,11 @@
     -webkit-animation: cycle-bulb-backlight-opacity 0.4s;
 }
 
+.flash-super-fast .bulb-backlight{
+    animation: cycle-bulb-backlight-opacity 0.2s;
+    -webkit-animation: cycle-bulb-backlight-opacity 0.2s;
+}
+
 
 
 /** ------------------------------------------------------------- */
@@ -51,7 +73,7 @@
  *
  * The actual animations with browser prefixing. 
  */
-/** Partial opacity cycle. */
+/** Main backlight opacity cycle. */
 @keyframes cycle-main-backlight-opacity {
     0% {
         /* Safari 1.x */
@@ -59,13 +81,13 @@
         /* Good browsers */
         opacity: 0.05;
     }
-    40%{
+    0.4%{
         /* Safari 1.x */
         -khtml-opacity: 0.6;
         /* Good browsers */
         opacity: 0.6;
     }
-    60% {
+    35% {
         /* Safari 1.x */
         -khtml-opacity: 0.7;
         /* Good browsers */
@@ -86,13 +108,13 @@
         /* Good browsers */
         opacity: 0.05;
     }
-    40%{
+    0.4%{
         /* Safari 1.x */
         -khtml-opacity: 0.6;
         /* Good browsers */
         opacity: 0.6;
     }
-    60% {
+    35% {
         /* Safari 1.x */
         -khtml-opacity: 0.7;
         /* Good browsers */
@@ -113,13 +135,13 @@
         /* Good browsers */
         opacity: 0.05;
     }
-    40%{
+    0.4%{
         /* Safari 1.x */
         -khtml-opacity: 0.6;
         /* Good browsers */
         opacity: 0.6;
     }
-    60% {
+    35% {
         /* Safari 1.x */
         -khtml-opacity: 0.7;
         /* Good browsers */
@@ -140,13 +162,13 @@
         /* Good browsers */
         opacity: 0.05;
     }
-    40%{
+    0.4%{
         /* Safari 1.x */
         -khtml-opacity: 0.5;
         /* Good browsers */
         opacity: 0.5;
     }
-    60% {
+    35% {
         /* Safari 1.x */
         -khtml-opacity: 0.6;
         /* Good browsers */
@@ -162,7 +184,7 @@
 
 /** ------------------------------------------------------------- */
 
-/** Full opacity cycle. */
+/** Bulb backlight opacity cycle. */
 @keyframes cycle-bulb-backlight-opacity {
     0% {
         /* Safari 1.x */
@@ -170,13 +192,13 @@
         /* Good browsers */
         opacity: 0.0;
     }
-    40%{
+    0.4%{
         /* Safari 1.x */
         -khtml-opacity: 0.90;
         /* Good browsers */
         opacity: 0.90;
     }
-    60% {
+    35% {
         /* Safari 1.x */
         -khtml-opacity: 0.95;
         /* Good browsers */
@@ -197,13 +219,13 @@
         /* Good browsers */
         opacity: 0.0;
     }
-    40%{
+    0.4%{
         /* Safari 1.x */
         -khtml-opacity: 0.90;
         /* Good browsers */
         opacity: 0.90;
     }
-    60% {
+    35% {
         /* Safari 1.x */
         -khtml-opacity: 0.95;
         /* Good browsers */
@@ -224,13 +246,13 @@
         /* Good browsers */
         opacity: 0.0;
     }
-    40%{
+    0.4%{
         /* Safari 1.x */
         -khtml-opacity: 0.90;
         /* Good browsers */
         opacity: 0.90;
     }
-    60% {
+    35% {
         /* Safari 1.x */
         -khtml-opacity: 0.95;
         /* Good browsers */
@@ -251,13 +273,13 @@
         /* Good browsers */
         opacity: 0.0;
     }
-    40%{
+    0.4%{
         /* Safari 1.x */
         -khtml-opacity: 0.90;
         /* Good browsers */
         opacity: 0.90;
     }
-    60% {
+    35% {
         /* Safari 1.x */
         -khtml-opacity: 0.95;
         /* Good browsers */
