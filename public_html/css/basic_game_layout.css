@@ -3,7 +3,7 @@
 Calculation for main hexagons:
 (width/2) * tan(30 deg) = triangle height (simple trig)
 
-    version: 0.3.2-20140328
+    version: 0.3.3-20140330
     Created on : Mar 23, 2014, 12:36:20 PM
     Author     : Jason J.
 */
@@ -84,22 +84,24 @@ label {
 #game-body-wrapper {
     position: absolute; 
     
-    height: 336px;
+    /*height: 236px; + 2*166 */
+    height: 668px;
     width: 582px;
     
     top: 50%;
     left: 50%;
-    margin-top: -168px;
+    margin-top: -334px;
     margin-left: -291px;
     
     text-align: center; 
     background: grey;
     
     /** Border helps reduce seams. */
-    border-top: grey solid 1px;
-    border-bottom: grey solid 1px;  
+    border-top: grey solid 0px;
+    border-bottom: grey solid 0px;  
     border-radius: 3px;
 }
+/** Shifting to masking scheme. */
 /** Part 1: to giving the wrapper a hexagonal shape. 
 Remember to balance the widths here with the width in the 
 #game-body-wrapper. */
@@ -107,30 +109,34 @@ Remember to balance the widths here with the width in the
 #game-body-wrapper:after {
     position: absolute;
     left: 50%;
-    margin-left: -291px;
+    margin-left: -300px;
     
     content: "";
     width: 6px;
     height: 0px;
-    
-    border-right: 288px solid transparent; 
-    border-left: 288px solid transparent; 
-    border-radius: 5px;
+        
+    background: none;
+    /** Match main background colour. */ 
+    border: 5px solid black;
+    border-right: 298px solid black; 
+    border-left: 298px solid black; 
+    z-index: 10;
 }
 
 /** Part 2b: to giving the wrapper a hexagonal shape. 
 Remember to balance the heights here with the heights in the 
 #game-body-wrapper. */
 #game-body-wrapper:before {    
-    top: -166px;
-    border-bottom: 166px solid grey; 
+    top: -5px;
+    border-bottom: 171px solid transparent; 
+    
 }
 /** Part 2a: to giving the wrapper a hexagonal shape. 
 Remember to balance the heights here with the heights in the 
 #game-body-wrapper. */
 #game-body-wrapper:after {
-    bottom: -166px;
-    border-top: 166px solid grey; 
+    bottom: -5px;
+    border-top: 171px solid transparent; 
 }
 
 
