@@ -3,7 +3,7 @@
 Calculation for main hexagons:
 (width/2) * tan(30 deg) = triangle height (simple trig)
 
-    version: 0.3.3-20140330
+    version: 0.3.4-20140331
     Created on : Mar 23, 2014, 12:36:20 PM
     Author     : Jason J.
 */
@@ -30,6 +30,14 @@ label {
     cursor: pointer;
     display: inline-block;
     padding: 10px;
+}
+/**
+ * #.# Header board
+ *
+ * Where the current score and controls are shown.
+ */
+#header-board{
+    z-index: 99;
 }
 /** All elements align center vertically. */
 #header-board  * {
@@ -58,6 +66,7 @@ label {
 #header-board #score-current{
     margin-left: 20px;
     width: 150px;
+    z-index: 99;
 }
 
 /**
