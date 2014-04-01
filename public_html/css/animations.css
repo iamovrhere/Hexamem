@@ -1,6 +1,6 @@
 /* Contains all the animations for the game.
     Author     : Jason J.
-    Version    : 0.3.0-20140330
+    Version    : 0.3.1-20140331
 */
 
 /**
@@ -17,10 +17,10 @@
 }
 /** The main backlights. */
 .flash-super-slow .main-backlight{
-    -webkit-animation: cycle-main-backlight-opacity 2.8s ;
-    -moz-animation: cycle-main-backlight-opacity 2.8s ;
-    -o-animation: cycle-main-backlight-opacity 2.8s ;
-    animation: cycle-main-backlight-opacity 2.8s ;
+    -webkit-animation: cycle-main-backlight-opacity 5.8s ;
+    -moz-animation: cycle-main-backlight-opacity 5.8s ;
+    -o-animation: cycle-main-backlight-opacity 5.8s ;
+    animation: cycle-main-backlight-opacity 5.8s ;
     
 }
 
@@ -58,10 +58,10 @@
 
 /** Backlight bulb flashes*/
 .flash-super-slow .bulb-backlight{
-    -webkit-animation: cycle-bulb-backlight-opacity 2.8s;
-    -moz-animation: cycle-bulb-backlight-opacity 2.8s;
-    -o-animation: cycle-bulb-backlight-opacity 2.8s;
-    animation: cycle-bulb-backlight-opacity 2.8s;
+    -webkit-animation: cycle-bulb-backlight-opacity 5.8s;
+    -moz-animation: cycle-bulb-backlight-opacity 5.8s;
+    -o-animation: cycle-bulb-backlight-opacity 5.8s;
+    animation: cycle-bulb-backlight-opacity 5.8s;
     
 }
 
@@ -104,7 +104,7 @@
  * Defines the colour shift animations for the outer hexagon.
  */
 /** Fades the green twice. */
-#game-body-wrapper.correct-backround-fade {
+#game-body-wrapper.correct-background-fade {
     -webkit-animation: grey-fade-green-background 1.2s 2;
     -moz-animation: grey-fade-green-background 1.2s 2;
     -o-animation: grey-fade-green-background 1.2s 2;
@@ -427,10 +427,10 @@
         left: 49%;
     }
     2.5% {
-        left: 52%;
+        left: 50.8%;
     }
-    2.5% {
-        left: 48%;
+    3.0% {
+        left: 49.2%;
     }
     3.5% {
         left: 50%;
@@ -456,10 +456,10 @@
         left: 49%;
     }
     2.5% {
-        left: 52%;
+        left: 50.8%;
     }
-    2.5% {
-        left: 48%;
+    3.0% {
+        left: 49.2%;
     }
     3.5% {
         left: 50%;
@@ -485,10 +485,10 @@
         left: 49%;
     }
     2.5% {
-        left: 52%;
+        left: 50.8%;
     }
-    2.5% {
-        left: 48%;
+    3.0% {
+        left: 49.2%;
     }
     3.5% {
         left: 50%;
@@ -514,10 +514,10 @@
         left: 49%;
     }
     2.5% {
-        left: 52%;
+        left: 50.8%;
     }
-    2.5% {
-        left: 48%;
+    3.0% {
+        left: 49.2%;
     }
     3.5% {
         left: 50%;

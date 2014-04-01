@@ -3,7 +3,7 @@
 Calculation for main hexagons:
 (width/2) * tan(30 deg) = triangle height (simple trig)
 
-    version: 0.3.4-20140331
+    version: 0.4.0-20140331
     Created on : Mar 23, 2014, 12:36:20 PM
     Author     : Jason J.
 */
@@ -204,10 +204,69 @@ Remember to balance the heights here with the heights in the
  * Here are defined the styles for the light buttons.
  */
 
+/** Middle button. Used for start, retry, and continue. */
+#middle-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    
+    margin-top: -75px;
+    margin-left: -64px;
+        
+    width: 128px;
+    height: 150px;  
+    z-index: -3;
+    
+    text-align: center;
+    line-height: 150px;
+    
+    color: #080808;
+}
+
+#middle-button.active {
+    /** Dark green. */
+    background: #189901;
+}
+
+#middle-button.active.bad {
+    /** Medium red. */
+    background: #d50601;
+}
+
+#middle-button,
+#middle-button.inactive {
+    background: gray;
+}
+
+#middle-button:before,
+#middle-button:after {
+    position: absolute; 
+    left: 50%;
+    margin-left: -68px;
+    
+    height: 0px;
+    width: 0px;
+    content: "";
+    
+    border-left: 68px black solid ;
+    border-right:68px black solid;
+}
+#middle-button:before{
+    top: 0px;
+    border-bottom: 38px transparent solid;
+}
+#middle-button:after{
+    bottom: 0px;
+    border-top: 38px transparent solid;
+}
+
 /**
  * #.## Button locations
  *
  * Here are defined the locations & rotations of the buttons.
+ * Top layer is z-index: 5, 
+ * Bulb layer is z-index: -1,
+ * Main backlight layer is z-index: -2
  */
 
 /** Define the origin of all buttons to be their center.  */
@@ -380,7 +439,7 @@ Remember to balance the heights here with the heights in the
     width: 100%;
     
     /** Ensure the the map is clickable. */
-    z-index: 99;
+    z-index: 999;
     
     background: none;    
 }

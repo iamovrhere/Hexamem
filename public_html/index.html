@@ -2,30 +2,37 @@
 <!--
 
 -->
-<html>
+<html >
     <head>
-        <!--Version: 0.1.0a-20140325 -->
-        <title>HexaMemory</title>
+        <!--Version: 0.2.0a-20140401 -->
+        <title>HexaMem</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, , initial-scale=1, maximum-scale=1" />        
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        
+        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />        
+                
         <link type="text/css" rel="stylesheet" href="css/basic_game_layout.css?154" />
         <link type="text/css" rel="stylesheet" href="css/button_colours.css?654" />
         <link type="text/css" rel="stylesheet" href="css/animations.css?6543" />
         <!--[if IE 8 ]>    
         <link type="text/css" rel="stylesheet" href="css/ie8_compatibility.css" />   
         <![endif]-->
+                
+        <script type="text/javascript" src="js/hexamem-engine.js" ></script>
+        <script type="text/javascript" src="js/Game.js" ></script>
+        <script type="text/javascript" src="js/PlayArea.js" ></script>
+        <script type="text/javascript" src="js/HeaderBoard.js" ></script>
+        
     </head>
     <body >
         <div id="header-board">
             <div id="score-best" >
                 <span class="label">Best: </span>
-                <span class="score" >0</span>
+                <span id="best-score" class="score" >0</span>
             </div>
             <div id="score-current" >
                 <span class="label">Current: </span>
-                <span class="score" >0</span>
+                <span id="current-score"  class="score" >0</span>
             </div>
             <form id="controls" >
                 <input id="auto-progress" name="auto-progress" checked="checked" 
@@ -36,9 +43,10 @@
                 <input id='reset-button' type="button" name='reset-button' value='Reset' />
             </form>
         </div>
-        <div id="game-body-wrapper" >
+        <div id="game-body-wrapper" class="" >
             <div id="game-body">
                 <img class="map-hack"  src="data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" usemap="#button-map" />
+                <div id="middle-button" class=""></div>
                 <div id="button-1-wrapper" class="row-1 right-col trapezium-button-wrapper " >
                     <div class="bulb-backlight" ></div>
                     <div class="main-backlight trapezium-button" ></div>
@@ -76,7 +84,7 @@
    <!-- <area id="full-area" shape="rect" coords="0,0,1000,1000" 
                   href="javascript:void(0);" alt="Button" 
                   onclick="alert('button:'+event.clientX+','+event.clientY)"   /> -->
-        <area id='middle-button' shape="circle" coords="281,328,70" 
+        <area id='middle-button-area' shape="circle" coords="281,328,70" 
               alt="Button" href="javascript:void(0);" />
         <area id="button-area-1" shape="poly" coords="285,15,285,244,350,285,548,170" 
               alt="Button" href="javascript:void(0);" />
