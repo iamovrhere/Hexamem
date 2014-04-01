@@ -8,7 +8,7 @@ if (typeof HexamemEngine === 'undefined'){
  * If board components cannot be found, it throws an Error. 
  * 
  * @param {Number} size The expected size of the play area.
- * @version 0.3.0-20140331
+ * @version 0.3.1-20140401
  * @author Jason J.
  * @type HexamemEngine.prototype.PlayArea
  * @returns {HexamemEngine.prototype.PlayArea}
@@ -129,8 +129,7 @@ HexamemEngine.prototype.PlayArea = function(size){
     function addClass(element, cssClass, add){
         if ('undefined' === add){
             add = true;
-        }
-        
+        }        
         var currentClass = element.className ? element.className  : '';
         var pattern = new RegExp('(^|\\s)'+cssClass+'(\\s|$)', 'ig');
         var removeClass = function(){
@@ -247,7 +246,7 @@ HexamemEngine.prototype.PlayArea = function(size){
      * @param {Number} position The position of the button in the circle.  */
     function _longFlashPosition(position){
         var LONG_FLASH_CLASS = 'flash-super-slow';
-        var LONG_FLASH_INTERVAL= '2800';
+        var LONG_FLASH_INTERVAL= '4800';
         var index = position -1; //offset by 1.
         _setFlashButtonClass(
                 index, 
@@ -284,7 +283,8 @@ HexamemEngine.prototype.PlayArea = function(size){
      * @param {Number} position The position to flash. 
      * These go in a clockwise order beginning at 1.
      * @param {Number} speedIndex a value from 0,1,2,3 where larger indices 
-     * denote speed.  Invalid values are set to 0.
+     * denote speed.  Invalid values are set to 0. 
+     * Speeds are: 800, 600, 400, 200ms, respectively.
      * @throws {Error} If the position is out of bounds. */
     this.flashPosition = function(position, speedIndex){
        _flashPosition(position,speedIndex);
@@ -308,8 +308,8 @@ HexamemEngine.prototype.PlayArea = function(size){
     
     /** Flashes the game board red + shakes it for negative feedback. */
     this.negativeFeedback = function(){
-        var cssClass = 'wrong-backround-fade';
-        var flashInterval = 3600;
+        var cssClass = 'wrong-background-fade';
+        var flashInterval = 4000;
         //add animation class
         addClass(gameBorderUnderlay, cssClass, true);
         //undo animation class, eventually.
@@ -321,8 +321,8 @@ HexamemEngine.prototype.PlayArea = function(size){
     
     /** Flashes the game board green for positive feedback. */
     this.positiveFeedback = function(){
-        var cssClass = 'correct-backround-fade';
-        var flashInterval = 2500;
+        var cssClass = 'correct-background-fade';
+        var flashInterval = 3000;
         //add animation class
         addClass(gameBorderUnderlay, cssClass, true);
         //undo animation class, eventually.
