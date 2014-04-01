@@ -5,21 +5,41 @@ if (typeof HexamemEngine === 'undefined'){
 /**
  * Responsible for board interactions.
  * Attached to the playing board area. 
- * If board components cannot be found, it will throws an Error. 
+ * If board components cannot be found, it throws an Error. 
  * 
  * @param {Number} size The expected size of the play area.
- * @version 0.2.0-20140330
+ * @version 0.3.0-20140331
  * @author Jason J.
  * @type HexamemEngine.prototype.PlayArea
  * @returns {HexamemEngine.prototype.PlayArea}
  * @throws {Error} If elements of the play area are not found.
  */
 HexamemEngine.prototype.PlayArea = function(size){
-    /** @TODO start button. */
-    
     var BOARD_SIZE = size;
     /** @type Number The current flashing speed. Either 0, 1, 2, 3. 0 is slowest. */
     var FLASH_SPEED_INDEX_CLICK = 3;
+    
+    /** @type Element The underlay background/border of the game board. */
+    var gameBorderUnderlay = document.getElementById('game-body-wrapper');
+    if (!gameBorderUnderlay){
+        throw new Error('Cannot find element with id: "game-body-wrapper"');
+    }
+    /** @type Element The middle button click area. */
+    var middleButtonClickArea = document.getElementById('middle-button-area');    
+    /** @type Element The middle button display area. */
+    var middleButtonDisplayArea = document.getElementById('middle-button');
+    if (!middleButtonClickArea){
+        throw new Error('Cannot find element with id: "middle-button-area"');
+    }
+    if (!middleButtonDisplayArea){
+        throw new Error('Cannot find element with id: "middle-button"');
+    }
+    /** @type string The coords of the middle button to add and remove (and so enable/disable. */
+    var middleButtonCoords = middleButtonClickArea.coords;
+    middleButtonClickArea.removeAttribute('coords');
+    
+    /** @type Array|Function The list of functions for the middle button */
+    var middleButtonFunctions = new Array();
     
     /** Replace STUB with number to get id. */
     var idClickAreaStub = 'button-area-STUB';
@@ -30,11 +50,7 @@ HexamemEngine.prototype.PlayArea = function(size){
     var buttonDisplayArea = new Array();
     /** @type Array|Element An array of elements for the clicking areas. */
     var buttonClickArea = new Array();
-    /** @type Element The underlay background/border of the game board. */
-    var gameBorderUnderlay = document.getElementById('game-body-wrapper');
-    if (!gameBorderUnderlay){
-        throw new Error('Cannot find element with id: "game-body-wrapper"');
-    }
+    
     
     /** @type Array|Function The list of functions to perform on click. */
     var flashButtonFunctions = new Array();
@@ -50,6 +66,12 @@ HexamemEngine.prototype.PlayArea = function(size){
     var flashInterval = [810, 610, 410, 210];
     /** @type Array|String The flash css for each speed. */
     var flashCssClass = ['flash-normal', 'flash-med-fast', 'flash-fast', 'flash-super-fast'];
+    
+    ////////////////////////////////////////////////////////////////////////////
+    ////  End member initialization
+    ////////////////////////////////////////////////////////////////////////////
+    //set middle click listener.
+    addAction(middleButtonClickArea, middleButtonActions);
     
     for (var index = 1; index <= BOARD_SIZE; index++  ){
         var clickArea = document.getElementById(idClickAreaStub.replace('STUB', index));
@@ -157,6 +179,12 @@ HexamemEngine.prototype.PlayArea = function(size){
         }
         return false;
     }
+    /** Runs the list of middle button functions if enabled. */
+    function middleButtonActions(){
+        for (var index = 0; index < middleButtonFunctions.length; index++){
+            middleButtonFunctions[index]();
+        }
+    }
     
     /**
      * Rans the list of actions for the flash buttons at the position give.
@@ -229,6 +257,17 @@ HexamemEngine.prototype.PlayArea = function(size){
     ////////////////////////////////////////////////////////////////////////////
     //// Public functions
     ////////////////////////////////////////////////////////////////////////////
+    /** Adds a listener for the middle button.
+     * @param {Function} action The function to perform.
+     * @throws {Error} If action is not a function.
+     */
+    this.setMiddleButtonListener = function(action){
+        if (typeof action === 'function'){
+            middleButtonFunctions.push(action);
+        } else {
+            throw new Error('"'+action+'" is not a function!');
+        }
+    };
     /** Adds a listener for the flash buttons.
      * @param {Function} action The function to perform, takes in one parameter:
      * the 1-indexed position of the button pressed.
@@ -291,6 +330,33 @@ HexamemEngine.prototype.PlayArea = function(size){
                 function(){
                     addClass(gameBorderUnderlay, cssClass, false);
                 },flashInterval);        
+    };
+    /**
+     * Sets the middle button's inner text and, optionally, mode.
+     * @param {String} innerText The text to set in the middle button
+     * @param {Number} mode The button mode to set. 
+     * 0 for inactive. 1 for active positive. 2 for active negative.
+     * Default is 0. Invalid values are assumed 0.
+     */
+    this.setMiddleButton = function(innerText, mode){
+        middleButtonDisplayArea.innerHTML = innerText;
+        switch (mode){
+            case 1:
+                middleButtonDisplayArea.className = 'active';
+                middleButtonClickArea.coords = middleButtonCoords;
+                break;
+            case 2:
+                middleButtonDisplayArea.className = 'active bad';
+                middleButtonClickArea.coords = middleButtonCoords;
+                break;
+            case 0:
+            default:
+             middleButtonDisplayArea.className = 'inactive';
+             if (!middleButtonCoords){
+                middleButtonCoords = middleButtonClickArea.coords;
+             }
+             middleButtonClickArea.removeAttribute('coords');
+        }
     };
 };
 
