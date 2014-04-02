@@ -8,7 +8,7 @@ if (typeof HexamemEngine === 'undefined'){
  * the game is played
  * * @param {HexamemEngine.prototype.HeaderBoard} scoreBoard The score board where
  * scores and controls are.
- * @version 0.2.0-20140401
+ * @version 0.3.0-20140401
  * @author Jason J.
  * @type HexamemEngine.prototype.Game
  * @returns {HexamemEngine.prototype.Game}
@@ -27,7 +27,7 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
     var currentDifficulty = 0;
     
     /** @type Number The current score. */
-    var currentScore = 0;
+    var currentScore = 1;
     /** @type Number The best score. */
     var bestScore = 0;
     
@@ -40,8 +40,9 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
     var AUTO_PROGRESS_TIME = 3550;
     /** @type Number the delay before providing feedback. */
     var FEEDBACK_DELAY = 1000;
+    /** @type Number the number of 'level's before updating the difficulty. */
+    var DIFFICULTY_SHIFT_INCREMENT = 4 ;
     
-    /** @TODO game difficulty slope. */
     /** @TODO local storage of best scores. */
     
     /** @type Array|Number The flash speed to use. Values are 0 - 3. */
@@ -155,12 +156,24 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
                         FLASH_DELAY[currentDifficulty]);
         }
     }
+    /** Checks diffculity and, if necessary, increases it. */
+    function checkDifficulty(){
+        if (FLASH_DELAY.length !== FLASH_SPEED.length){
+            console.log('Unexpected state: Flash diffculty states are inconsistent!');
+        }
+        if (currentScore > 0 && currentScore % DIFFICULTY_SHIFT_INCREMENT === 0){
+            if (currentDifficulty+1 < FLASH_DELAY.length){
+                currentDifficulty++;
+            }
+        }
+    }
     
     /** Progresses the game to next level. 
      * @param {boolean} force if true forces the progress. */
     function progress(force){
         console.log('progreess')
         gameboard.enableFlashButtons(false);
+        checkDifficulty();
         generateNext();
         if (force){
             flashSequence();
@@ -173,8 +186,8 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
     /** Updates the high score and current score. */
     function updateScores(){
         currentScore = currentGame.length;
-        if (bestScore < currentScore){
-            scoreboard.updateBestScore(bestScore = currentScore);
+        if (bestScore < currentScore - 1){
+            scoreboard.updateBestScore(bestScore = currentScore -1);
         }
         scoreboard.updateCurrentScore(currentScore);
     }
@@ -204,6 +217,7 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
         currentGame = new Array();        
         currentPlay = 0;
         currentScore = 0;
+        currentDifficulty = 0;
         updateScores();
     };
     
