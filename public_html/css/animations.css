@@ -1,6 +1,6 @@
 /* Contains all the animations for the game.
     Author     : Jason J.
-    Version    : 0.3.1-20140331
+    Version    : 0.4.0-20140401
 */
 
 /**
@@ -362,50 +362,50 @@
  */
 @keyframes grey-fade-green-background {
     0% {
-        background: grey;
+        background: #181818;
     }
     45% {
         /** Medium green. */
         background: #1d8f01;
     }
     100% {
-        background: grey;
+        background: #181818;
     }
 }
 @-o-keyframes grey-fade-green-background {
     0% {
-        background: grey;
+        background: #181818;
     }
     45% {
         /** Medium green. */
         background: #1d8f01;
     }
     100% {
-        background: grey;
+        background: #181818;
     }
 }
 @-moz-keyframes grey-fade-green-background {
     0% {
-        background: grey;
+        background: #181818;
     }
     45% {
         /** Medium green. */
         background: #1d8f01;
     }
     100% {
-        background: grey;
+        background: #181818;
     }
 } 
 @-webkit-keyframes grey-fade-green-background {
     0% {
-        background: grey;
+        background: #181818;
     }
     45% {
         /** Medium green. */
         background: #1d8f01;
     }
     100% {
-        background: grey;
+        background: #181818;
     }
 }
 
@@ -418,7 +418,7 @@
 @keyframes red-shake-grey-background {
     0% {
         left: 50%;
-        background: grey;
+        background: #181818;
     }
     0.5% {
         left: 51%;
@@ -441,13 +441,13 @@
         background: #d50601;
     }
     100% {
-        background: grey;
+        background: #181818;
     }
 }
 @-o-keyframes red-shake-grey-background {
     0% {
         left: 50%;
-        background: grey;
+        background: #181818;
     }
     0.5% {
         left: 51%;
@@ -470,13 +470,13 @@
         background: #d50601;
     }
     100% {
-        background: grey;
+        background: #181818;
     }
 }
 @-moz-keyframes red-shake-grey-background {
     0% {
         left: 50%;
-        background: grey;
+        background: #181818;
     }
     0.5% {
         left: 51%;
@@ -499,13 +499,13 @@
         background: #d50601;
     }
     100% {
-        background: grey;
+        background: #181818;
     }
 }  
 @-webkit-keyframes red-shake-grey-background {
     0% {
         left: 50%;
-        background: grey;
+        background: #181818;
     }
     0.5% {
         left: 51%;
@@ -528,6 +528,6 @@
         background: #d50601;
     }
     100% {
-        background: grey;
+        background: #181818;
     }
 }

@@ -4,16 +4,16 @@
 -->
 <html >
     <head>
-        <!--Version: 0.2.0a-20140401 -->
-        <title>HexaMem</title>
+        <!--Version: 0.3.1a-20140403 -->
+        <title>HexaMem 0.3.1a</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="apple-mobile-web-app-capable" content="yes" />        
                 
-        <link type="text/css" rel="stylesheet" href="css/basic_game_layout.css?154" />
-        <link type="text/css" rel="stylesheet" href="css/button_colours.css?654" />
-        <link type="text/css" rel="stylesheet" href="css/animations.css?6543" />
+        <link type="text/css" rel="stylesheet" href="css/basic_game_layout.css" />
+        <link type="text/css" rel="stylesheet" href="css/button_colours.css" />
+        <link type="text/css" rel="stylesheet" href="css/animations.css" />
         <!--[if IE 8 ]>    
         <link type="text/css" rel="stylesheet" href="css/ie8_compatibility.css" />   
         <![endif]-->
@@ -21,8 +21,7 @@
         <script type="text/javascript" src="js/hexamem-engine.js" ></script>
         <script type="text/javascript" src="js/Game.js" ></script>
         <script type="text/javascript" src="js/PlayArea.js" ></script>
-        <script type="text/javascript" src="js/HeaderBoard.js" ></script>
-        
+        <script type="text/javascript" src="js/HeaderBoard.js" ></script>        
     </head>
     <body >
         <div id="header-board">
@@ -45,7 +44,9 @@
         </div>
         <div id="game-body-wrapper" class="" >
             <div id="game-body">
-                <img class="map-hack"  src="data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" usemap="#button-map" />
+                <img class="map-hack"  
+                     src="data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" 
+                     usemap="#button-map" />
                 <div id="middle-button" class=""></div>
                 <div id="button-1-wrapper" class="row-1 right-col trapezium-button-wrapper " >
                     <div class="bulb-backlight" ></div>
@@ -82,23 +83,23 @@
         </div>  
         <map name="button-map">            
    <!-- <area id="full-area" shape="rect" coords="0,0,1000,1000" 
-                  href="javascript:void(0);" alt="Button" 
+                  href="#" alt="Button" 
                   onclick="alert('button:'+event.clientX+','+event.clientY)"   /> -->
         <area id='middle-button-area' shape="circle" coords="281,328,70" 
-              alt="Button" href="javascript:void(0);" />
+              alt="Button" href="#" />
         <area id="button-area-1" shape="poly" coords="285,15,285,244,350,285,548,170" 
-              alt="Button" href="javascript:void(0);" />
+              alt="Button" href="#" />
         <area id="button-area-2" shape="poly" coords="354,290,555,175,555,480,354,362"
-              alt="Button" href="javascript:void(0);"  />
+              alt="Button" href="#"  />
         <area id="button-area-3" shape="poly" coords="348,372,548,487,282,640,284,410" 
-              alt="Button" href="javascript:void(0);"  />
+              alt="Button" href="#"  />
         
         <area id="button-area-4" shape="poly" coords="212,374,275,408,275,639,14,488" 
-              alt="Button" href="javascript:void(0);"  />
+              alt="Button" href="#"  />
         <area id="button-area-5" shape="poly" coords="199,290,8,175,8,480,199,362"  
-              alt="Button" href="javascript:void(0);"  />
+              alt="Button" href="#"  />
         <area id="button-area-6" shape="poly" coords="10,170,208,285,275,244,275,15"  
-              alt="Button" href="javascript:void(0);"   />
+              alt="Button" href="#"   />
         </map>  
     </body>
 </html>

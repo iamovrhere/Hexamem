@@ -3,7 +3,7 @@
 Calculation for main hexagons:
 (width/2) * tan(30 deg) = triangle height (simple trig)
 
-    version: 0.4.0-20140331
+    version: 0.5.0-20140401
     Created on : Mar 23, 2014, 12:36:20 PM
     Author     : Jason J.
 */
@@ -18,7 +18,7 @@ html, body{
     background: #000;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     
-    color: gray;
+    color: #7a7a7a;
     font-size: 14pt;
 }
 /** The auto-progress checkbox. */
@@ -30,6 +30,10 @@ label {
     cursor: pointer;
     display: inline-block;
     padding: 10px;
+}
+/** All inputs. */
+input {
+    cursor: pointer;
 }
 /**
  * #.# Header board
@@ -48,6 +52,7 @@ label {
         
     float: left;
     padding: 5px;
+    z-index: 99;
 }
 /** Controls to the right. */
 #header-board form {
@@ -60,13 +65,31 @@ label {
 /** Score is to the right of the score divs. */
 #header-board .score{
     float: right;
+    font-size: 18pt;
 }
 /** The score ontainer sizes. */
 #header-board #score-best, 
 #header-board #score-current{
     margin-left: 20px;
     width: 150px;
-    z-index: 99;
+}
+/** Re style the reset button to ''fit in'. */
+#header-board #reset-button {
+    background: none;
+    border: #2f2f2f 2px solid;
+    
+    font-size: 14pt;
+    color: #4f4f4f;
+    
+    height: 34px;
+    width: 82px;    
+    
+    margin-left: 10px;
+    padding: 0px;
+}
+#header-board #reset-button:active{
+    color: #7f7f7f;
+    border: #5f5f5f 2px solid;
 }
 
 /**
@@ -103,12 +126,13 @@ label {
     margin-left: -291px;
     
     text-align: center; 
-    background: grey;
+    background: #181818;
+    /* background-image: radial-gradient(
+                        circle farthest-side,
+                        #aaaaaa,
+                        #181818
+                      ); */
     
-    /** Border helps reduce seams. */
-    border-top: grey solid 0px;
-    border-bottom: grey solid 0px;  
-    border-radius: 3px;
 }
 /** Shifting to masking scheme. */
 /** Part 1: to giving the wrapper a hexagonal shape. 
@@ -165,6 +189,12 @@ Remember to balance the heights here with the heights in the
     
     text-align: center; 
     background: black;
+    background-image: radial-gradient(
+                         circle closest-side,
+                        black,
+                        #212121,
+                        black
+                      );
     
     border-top: black solid 1px;
     border-bottom: black solid 1px;    
@@ -220,22 +250,40 @@ Remember to balance the heights here with the heights in the
     text-align: center;
     line-height: 150px;
     
-    color: #080808;
+    color: #0c0c0c;
+    font-size: 16pt;
 }
 
 #middle-button.active {
     /** Dark green. */
     background: #189901;
+    background-image: radial-gradient(
+                         circle farthest-side,
+                        #189901,
+                        /** very dark green. */
+                        #082d01
+                      );
 }
 
 #middle-button.active.bad {
     /** Medium red. */
     background: #d50601;
+    background-image: radial-gradient(
+                         circle farthest-side,
+                        #d50601,
+                        /** very dark red. */
+                        #2d0301
+                      );
 }
 
 #middle-button,
 #middle-button.inactive {
-    background: gray;
+    background: #3f3f3f;
+    background-image: radial-gradient(
+                         circle farthest-side,
+                        #181818,
+                        #2f2f2f
+                      );
 }
 
 #middle-button:before,
@@ -248,8 +296,8 @@ Remember to balance the heights here with the heights in the
     width: 0px;
     content: "";
     
-    border-left: 68px black solid ;
-    border-right:68px black solid;
+    border-left: 68px #1f1f1f solid ;
+    border-right:68px #1f1f1f solid;
 }
 #middle-button:before{
     top: 0px;
@@ -456,13 +504,13 @@ Remember to balance the heights here with the heights in the
       /* IE 8 */
    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
    /* IE 5-7 */
-   filter: alpha(opacity=70);
+   filter: alpha(opacity=63);
    /* Safari 1.x */
-   -khtml-opacity: 0.70;
+   -khtml-opacity: 0.63;
    /* Older than Firefox 0.9 */
-   -moz-opacity: 0.70;
+   -moz-opacity: 0.63;
    /* Good browsers */
-   opacity: 0.70;
+   opacity: 0.63;
    
 }
 /* Set the button to be in front. */

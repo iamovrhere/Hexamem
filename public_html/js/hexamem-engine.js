@@ -12,7 +12,7 @@ if (typeof console === 'undefined'){
 }
 /** The super object to contain the entire game engine. 
      * 
-     * @version 0.2.0-20140401
+     * @version 0.3.0-20140401
      * @author Jason J.
      * @type hexamemEnginer|Object
      */
@@ -20,18 +20,12 @@ function HexamemEngine (){
     try {
         var gameboard = new HexamemEngine.prototype.PlayArea(6);
         var scoreboard = new HexamemEngine.prototype.HeaderBoard();
-        var game = new HexamemEngine.prototype.Game(gameboard, scoreboard);        
+        var game = new HexamemEngine.prototype.Game(gameboard, scoreboard);
     } catch (e){
         console.log('Error: '+e);
     }
 };
 function startYourEngines(){
-    /** The super object to contain the entire game engine. 
-     * 
-     * @version 0.1.0-20140328
-     * @author Jason J.
-     * @type hexamemEnginer|Object
-     */
     hexamemEngine = new HexamemEngine();
     //Prevent scrolling on ipads
     window.addEventListener('touchmove',function(e) {e.preventDefault();},false);
