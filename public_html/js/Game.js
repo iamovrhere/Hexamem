@@ -8,7 +8,7 @@ if (typeof HexamemEngine === 'undefined'){
  * the game is played
  * * @param {HexamemEngine.prototype.HeaderBoard} scoreBoard The score board where
  * scores and controls are.
- * @version 0.3.0-20140401
+ * @version 0.3.1-20140402
  * @author Jason J.
  * @type HexamemEngine.prototype.Game
  * @returns {HexamemEngine.prototype.Game}
@@ -57,6 +57,9 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
     ////////////////////////////////////////////////////////////////////////////
     //// End Members set.
     ////////////////////////////////////////////////////////////////////////////
+    //For closure.
+    var that = this;
+    
     updateScores();
     scoreboard.setAutoProgressListener(function(auto){
         autoProgress = auto;
@@ -65,8 +68,9 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
     gameboard.setMiddleButton('Start', 1);
     gameboard.setMiddleButtonListener(function(){
         progress(true);
-    });
-    var that = this;
+    });  
+    
+    gameboard.enableFlashButtons(false);
     gameboard.setFlashButtonListener(function(pos){
         that.testMove(pos);
     });
@@ -127,7 +131,6 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
      * @param {Number} position the button to flash. 
      * @param {Number} delay The delay before the */
     function flash(position, delay){
-        console.log('flash:'+position)
         setTimeout(
                 function(){
                     gameboard.flashPosition(position, FLASH_SPEED[currentDifficulty]);
@@ -144,7 +147,6 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
             gameboard.enableFlashButtons(false);
             gameboard.setMiddleButton('', 0);
         }
-        console.log('seq: %s --> %s', index, currentGame[index])
         gameboard.flashPosition(currentGame[index], FLASH_SPEED[currentDifficulty]);
         index++;        
         if (currentGame.length === index){
@@ -171,13 +173,16 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
     /** Progresses the game to next level. 
      * @param {boolean} force if true forces the progress. */
     function progress(force){
-        console.log('progreess')
         gameboard.enableFlashButtons(false);
-        checkDifficulty();
-        generateNext();
         if (force){
+            checkDifficulty();
+            generateNext();
+            scoreboard.updateCurrentScore(currentScore+1);
             flashSequence();
         } else if (autoProgress ){
+            checkDifficulty();
+            generateNext();
+            scoreboard.updateCurrentScore(currentScore+1);
             setTimeout(flashSequence, AUTO_PROGRESS_TIME);
         } else {
             gameboard.setMiddleButton('Continue?', 1);
@@ -186,8 +191,8 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
     /** Updates the high score and current score. */
     function updateScores(){
         currentScore = currentGame.length;
-        if (bestScore < currentScore - 1){
-            scoreboard.updateBestScore(bestScore = currentScore -1);
+        if (bestScore < currentScore ){
+            scoreboard.updateBestScore(bestScore = currentScore );
         }
         scoreboard.updateCurrentScore(currentScore);
     }
@@ -200,6 +205,7 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
             setTimeout(function(){
                 gameboard.positiveFeedback();
                 updateScores();
+                progress();
             }, FEEDBACK_DELAY);
         } else {
             var currPlay = currentGame[currentPlay];
@@ -207,7 +213,7 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
             gameboard.negativeFeedback();
             gameboard.setMiddleButton('Retry?', 2);
             //show correct move.
-            gameboard.longFlashPosition(currPlay);            
+            gameboard.longFlashPosition(currPlay);
         }
     };
     ////////////////////////////////////////////////////////////////////////////
@@ -216,7 +222,7 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
     this.reset = function(){
         currentGame = new Array();        
         currentPlay = 0;
-        currentScore = 0;
+        currentScore = 1;
         currentDifficulty = 0;
         updateScores();
     };
@@ -237,7 +243,6 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
             if (currentPlay >= currentGame.length){
                 currentPlay = 0;
                 roundFeedback(true);
-                progress();
             }
             return true;
         } else {
