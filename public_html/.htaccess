@@ -1,0 +1,4 @@
+#Serves the cache manifest with the correct type
+AddType text/cache-manifest .appcache
+#debugging: "Delete" the appcache (and so invalidate it) for debugging.
+RedirectMatch 404 /.*.appcache$
