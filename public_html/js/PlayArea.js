@@ -8,7 +8,7 @@ if (typeof HexamemEngine === 'undefined'){
  * If board components cannot be found, it throws an Error. 
  * 
  * @param {Number} size The expected size of the play area.
- * @version 0.3.1-20140401
+ * @version 0.3.2-20140403
  * @author Jason J.
  * @type HexamemEngine.prototype.PlayArea
  * @returns {HexamemEngine.prototype.PlayArea}
@@ -100,15 +100,15 @@ HexamemEngine.prototype.PlayArea = function(size){
      */
     function addAction(element, action){
         var onTouchAction = function(){
+            action();
+            element.addEventListener('touchstart', action, false);   
             /** Could add useragent check here. 
              * OR we perform a simple cheat:  If touchstart can exist, 
              * it will trigger before the click. Thus we remove the click before the click. */
             //Assume that if touchstart exists, so does removeEventListener.
-            element.removeEventListener('click', action);
+            element.removeEventListener('click', action);            
             //Remove the click action once and reset the touchstart to the action.
-            element.removeEventListener('touchstart', onTouchAction);
-            element.addEventListener('touchstart', action, false);
-            action();
+            element.removeEventListener('touchstart', onTouchAction);                     
         };
         if (element.addEventListener){
             element.addEventListener('click', action, false);
