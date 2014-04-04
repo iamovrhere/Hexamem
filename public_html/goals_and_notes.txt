@@ -26,7 +26,9 @@ Notes
 
 Original thoughts are to use hexagons for the "lights".
 Thought: Does IE8 support pseudo-css-elements?  I think not.
+ -It does
 Thought: Does IE8 support rotation? I think not.
+ -It does via -ms-filter
 
 Have an auto progress on the start (checkbox to make it optional)
 
@@ -34,3 +36,13 @@ Use css3 animations for the flashes
 
 In IE8 use a combination of timeouts & opacity to do the flashes.
 
+In order to avoid seams:
+-Introduce 1px borders
+-Have a 1px overlap.
+
+
+More easily done using svg's
+
+
+ipad: 300ms delay on mobile bad for a game.
+Caused by the desire to double click: solution ontouchstart
