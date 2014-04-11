@@ -2,3 +2,9 @@
 AddType text/cache-manifest .appcache
 #debugging: "Delete" the appcache (and so invalidate it) for debugging.
 #RedirectMatch 404 /.*.appcache
+
+#Be sure to serve the right MIME types
+AddType audio/mpeg mp3
+AddType audio/mp4 m4a
+AddType audio/ogg ogg
+AddType audio/ogg oga

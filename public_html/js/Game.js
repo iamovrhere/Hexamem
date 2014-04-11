@@ -6,18 +6,26 @@ if (typeof HexamemEngine === 'undefined'){
  * 
  * @param {HexamemEngine.prototype.PlayArea} gameArea The game board area where 
  * the game is played
- * * @param {HexamemEngine.prototype.HeaderBoard} scoreBoard The score board where
+ * @param {HexamemEngine.prototype.HeaderBoard} scoreBoard The score board where
  * scores and controls are.
- * @version 0.3.1-20140402
+ * @param {HexamemEngine.prototype.AudioManager} audioManager The audio manager
+ * for loading and playback of sounds.
+ * @version 0.4.0-20140411
  * @author Jason J.
  * @type HexamemEngine.prototype.Game
  * @returns {HexamemEngine.prototype.Game}
+ * 
+ * @requires HexamemEngine.prototype.Storage
  */
-HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
+HexamemEngine.prototype.Game = function(gameArea, scoreBoard, audioManager){
     /** @type HexamemEngine.prototype.PlayArea The play area that is displayed. */
     var gameboard = gameArea;
     /** @type HexamemEngine.prototype.HeaderBoard The score board area. */
     var scoreboard = scoreBoard;
+    /** @type HexamemEngine.prototype.Storage The non-temporal storage for scores. */
+    var scorestorage = HexamemEngine.prototype.Storage();
+    /** @type HexamemEngine.prototype.AudioManager The audio manager. */
+    var audiomanager = audioManager;
     
     /** @type Array|Number The pattern/position list of the current game. */
     var currentGame = new Array();
@@ -43,7 +51,29 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
     /** @type Number the number of 'level's before updating the difficulty. */
     var DIFFICULTY_SHIFT_INCREMENT = 4 ;
     
-    /** @TODO local storage of best scores. */
+    /** @type String The highscore key for score storage. */
+    var KEY_BEST_SCORE = 'my_highscore';
+    /** @type String The highscore key for score storage. */
+    var KEY_AUTO_PROGRESS_SETTING = 'setting_autoprogress';
+    
+    var KEY_FLASH_BUTTON_STUB_SOUND = 'flashButton';
+    var KEY_ERROR_SOUND = 'errorSound';
+    //var KEY_TAP_SOUND = 'tapSound';
+    
+    /** @type Array|String The audio files and their keys. */
+    var AUDIO_FILES = {
+        //created with Audacity.
+        flashButton1: 'audio/bloop1',
+        flashButton2: 'audio/bloop2',
+        flashButton3: 'audio/bloop3',
+        flashButton4: 'audio/bloop4',
+        flashButton5: 'audio/bloop5',
+        flashButton6: 'audio/bloop6',
+        
+        //tapSound: 'audio/none.mp3',
+        errorSound: 'audio/buzzer_edit' //source: http://www.soundjay.com/failure-sound-effect.html
+    };
+        
     
     /** @type Array|Number The flash speed to use. Values are 0 - 3. */
     var FLASH_SPEED = [0,       0,      1,          1,      2,      2];
@@ -52,18 +82,29 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
     //first number signifies the flash itself.
     
     /** @type boolean Whether or not to auto progress. Default true. */
-    var autoProgress = scoreboard.getAutoProgress();    
+    var autoProgress = scoreboard.getAutoProgress();
     
-    ////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
     //// End Members set.
     ////////////////////////////////////////////////////////////////////////////
+    //Add all audio files.
+    for (var key in AUDIO_FILES){
+        audiomanager.addFile(key, AUDIO_FILES[key]);
+    };
+    
     //For closure.
     var that = this;
     
-    updateScores();
+    updateScores();    
     scoreboard.setAutoProgressListener(function(auto){
         autoProgress = auto;
+        scorestorage.setRecord(KEY_AUTO_PROGRESS_SETTING, auto);
     });
+    
+    if (scorestorage.getRecord(KEY_AUTO_PROGRESS_SETTING) !== null){
+        autoProgress = scorestorage.getRecord(KEY_AUTO_PROGRESS_SETTING);
+        scoreBoard.setAutoProgress(autoProgress);
+    };
     
     gameboard.setMiddleButton('Start', 1);
     gameboard.setMiddleButtonListener(function(){
@@ -72,7 +113,10 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
     
     gameboard.enableFlashButtons(false);
     gameboard.setFlashButtonListener(function(pos){
-        that.testMove(pos);
+        if (that.testMove(pos)){
+            //audio on correct moves.
+            audioManager.play(KEY_FLASH_BUTTON_STUB_SOUND+pos);
+        }
     });
     
     scoreboard.setResetListener(function(){
@@ -126,16 +170,6 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
         currentGame.push(nextMove);
     }    
     
-    /**<b>Deprecated</b>
-     * Flashes the button at the give position with appropriate difficulty. 
-     * @param {Number} position the button to flash. 
-     * @param {Number} delay The delay before the */
-    function flash(position, delay){
-        setTimeout(
-                function(){
-                    gameboard.flashPosition(position, FLASH_SPEED[currentDifficulty]);
-            }, delay);
-    }
     
     /** Flashes the current sequence recursively.
      * @param {Number} index (Optional) The index of the game to flash. Default is 0.*/
@@ -147,6 +181,7 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
             gameboard.enableFlashButtons(false);
             gameboard.setMiddleButton('', 0);
         }
+        audioManager.play(KEY_FLASH_BUTTON_STUB_SOUND+currentGame[index]);
         gameboard.flashPosition(currentGame[index], FLASH_SPEED[currentDifficulty]);
         index++;        
         if (currentGame.length === index){
@@ -191,8 +226,17 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
     /** Updates the high score and current score. */
     function updateScores(){
         currentScore = currentGame.length;
+        if (bestScore <= 0){
+            //update best score from storage.
+            var prevScore = scorestorage.getRecord(KEY_BEST_SCORE);            
+            if (prevScore){
+                bestScore = prevScore;
+                scoreboard.updateBestScore(bestScore );
+            }
+        }
         if (bestScore < currentScore ){
             scoreboard.updateBestScore(bestScore = currentScore );
+            scorestorage.setRecord(KEY_BEST_SCORE, bestScore);
         }
         scoreboard.updateCurrentScore(currentScore);
     }
@@ -209,7 +253,7 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard){
             }, FEEDBACK_DELAY);
         } else {
             var currPlay = currentGame[currentPlay];
-            //gameboard.positiveFeedback();
+            audioManager.play(KEY_ERROR_SOUND);
             gameboard.negativeFeedback();
             gameboard.setMiddleButton('Retry?', 2);
             //show correct move.
