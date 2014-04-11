@@ -3,7 +3,7 @@
 Calculation for main hexagons:
 (width/2) * tan(30 deg) = triangle height (simple trig)
 
-    version: 0.5.1-20140406
+    version: 0.6.0-20140410
     Created on : Mar 23, 2014, 12:36:20 PM
     Author     : Jason J.
 */
@@ -496,9 +496,78 @@ Remember to balance the heights here with the heights in the
 /** ------------------------------------------------------------- */
 
 /** 
+ * * #.## Grid patterns
+ *
+ * Defines the attributes of the button's texture pattern. 
+ */
+
+/** Size is depending on trapezium-button size. */
+.button-pattern-underlay {
+    position: absolute;
+    
+    /** Above the trapeiziums. */
+    z-index: 10;
+    opacity: 0.04   ;
+    
+    height: 200px;
+    width: 80px;
+    
+    background-image: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255, 0),
+      rgba(255,255,255, 0) 7px, 
+      rgba(55,55,55, 0) 10px,
+      rgba(45,45,45, 50) 3px,
+      rgba(55,55,55, 0) 15px /* determines size */
+    );
+}
+/** Creates trapeziums. */
+.button-pattern-underlay:before,
+.button-pattern-underlay:after {
+    position: absolute;
+    bottom: 0px;
+    
+    content: " ";
+    height: 175px;
+    width: 105px;
+    
+    background-image: 
+    repeating-linear-gradient(
+        0deg,
+      rgba(255,255,255, 0),
+      rgba(255,255,255, 0) 7px, 
+      rgba(55,55,55, 0) 10px,
+      rgba(45,45,45, 50) 3px,
+      rgba(55,55,55, 0) 15px /* determines size */
+    );
+}
+/** Right parallelogram. */
+.button-pattern-underlay:after{
+    right: -62px;
+    -webkit-transform: skewX(30deg);
+  -moz-transform:    skewX(30deg);
+  -ms-transform:     skewX(30deg);
+  -o-transform:      skewX(30deg);
+  transform:         skewX(30deg);
+}
+/** Left parallelogram. */
+.button-pattern-underlay:before{
+   left: -62px;
+  -webkit-transform: skewX(-30deg);
+  -moz-transform:    skewX(-30deg);
+  -ms-transform:     skewX(-30deg);
+  -o-transform:      skewX(-30deg);
+  transform:         skewX(-30deg);
+}
+
+
+/** ------------------------------------------------------------- */
+
+/** 
  * * #.## Lumenescence
  *
- * Defines the attributes of the glowiness of the buttons. 
+ * Defines the attributes of the glowiness (jargon!) of the buttons. 
  */
 
 .trapezium-button {
@@ -524,11 +593,11 @@ Remember to balance the heights here with the heights in the
 .main-backlight.trapezium-button,
 .main-backlight.trapezium-button:before,
 .main-backlight.trapezium-button:after {
-   z-index: -2;
+   z-index: -6;
 }
 /** Bulb backlight in front of that. */
 .bulb-backlight {
-    z-index: -1;
+    z-index: -5;
 }
 
 /** The white background, 
