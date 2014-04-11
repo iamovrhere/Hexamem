@@ -3,7 +3,7 @@
 Calculation for main hexagons:
 (width/2) * tan(30 deg) = triangle height (simple trig)
 
-    version: 0.5.0-20140401
+    version: 0.5.1-20140406
     Created on : Mar 23, 2014, 12:36:20 PM
     Author     : Jason J.
 */
@@ -478,13 +478,14 @@ Remember to balance the heights here with the heights in the
 .map-hack {
     position: absolute;
     
-    top: -166px;
+    top: 10px;
     left: 50%;
-    margin-left: -50%;
+    margin-left: -280px;
     
     /** Same height defined by game body. */
     height: 656px;
-    width: 100%;
+    /** Width same as game body. */
+    width: 561px;
     
     /** Ensure the the map is clickable. */
     z-index: 999;
