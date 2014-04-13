@@ -10,7 +10,7 @@ if (typeof HexamemEngine === 'undefined'){
  * scores and controls are.
  * @param {HexamemEngine.prototype.AudioManager} audioManager The audio manager
  * for loading and playback of sounds.
- * @version 0.4.0-20140411
+ * @version 0.4.2-20140413
  * @author Jason J.
  * @type HexamemEngine.prototype.Game
  * @returns {HexamemEngine.prototype.Game}
@@ -60,7 +60,7 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard, audioManager){
     var KEY_ERROR_SOUND = 'errorSound';
     //var KEY_TAP_SOUND = 'tapSound';
     
-    /** @type Array|String The audio files and their keys. */
+     /** @type Array|String The audio files and their keys. */
     var AUDIO_FILES = {
         //created with Audacity.
         flashButton1: 'audio/bloop1',
@@ -73,7 +73,7 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard, audioManager){
         //tapSound: 'audio/none.mp3',
         errorSound: 'audio/buzzer_edit' //source: http://www.soundjay.com/failure-sound-effect.html
     };
-        
+    
     
     /** @type Array|Number The flash speed to use. Values are 0 - 3. */
     var FLASH_SPEED = [0,       0,      1,          1,      2,      2];
@@ -87,10 +87,43 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard, audioManager){
     ///////////////////////////////////////////////////////////////////////////
     //// End Members set.
     ////////////////////////////////////////////////////////////////////////////
-    //Add all audio files.
-    for (var key in AUDIO_FILES){
-        audiomanager.addFile(key, AUDIO_FILES[key]);
+    var setStart = function(){
+            gameboard.setMiddleButton('Start', 1);
+            gameboard.setMiddleButtonListener(function(){
+                progress(true);
+            }); 
+        };
+    var startAudio = function(){
+        load = function(){
+            var keyList = [];
+            if (AUDIO_FILES){
+                for (var key in AUDIO_FILES){
+                    keyList.push(key);
+                };
+                getFiles = function(){
+                    var key = keyList.shift();
+                    if (!key){
+                        return;
+                    }
+                    //NOTE: does not work in mobile browsers, only ios homescreen
+                    //or desktops
+                    /** @TODO progress bar. */
+                    audiomanager.addFile(key, AUDIO_FILES[key],
+                              function(){},
+                              function(){
+                                  getFiles();
+                              }
+                              );                    
+                };
+                getFiles();
+            }
+        };
+        load();
     };
+    
+    startAudio();
+    setStart();
+    
     
     //For closure.
     var that = this;
@@ -100,16 +133,13 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard, audioManager){
         autoProgress = auto;
         scorestorage.setRecord(KEY_AUTO_PROGRESS_SETTING, auto);
     });
-    
-    if (scorestorage.getRecord(KEY_AUTO_PROGRESS_SETTING) !== null){
+
+    if (scorestorage.getRecord(KEY_AUTO_PROGRESS_SETTING) === false || 
+            scorestorage.getRecord(KEY_AUTO_PROGRESS_SETTING)){
         autoProgress = scorestorage.getRecord(KEY_AUTO_PROGRESS_SETTING);
         scoreBoard.setAutoProgress(autoProgress);
     };
-    
-    gameboard.setMiddleButton('Start', 1);
-    gameboard.setMiddleButtonListener(function(){
-        progress(true);
-    });  
+     
     
     gameboard.enableFlashButtons(false);
     gameboard.setFlashButtonListener(function(pos){
@@ -231,8 +261,8 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard, audioManager){
             var prevScore = scorestorage.getRecord(KEY_BEST_SCORE);            
             if (prevScore){
                 bestScore = prevScore;
-                scoreboard.updateBestScore(bestScore );
             }
+            scoreboard.updateBestScore(bestScore );
         }
         if (bestScore < currentScore ){
             scoreboard.updateBestScore(bestScore = currentScore );
