@@ -5,7 +5,7 @@ if (typeof HexamemEngine === 'undefined'){
  * Retrieves a new audio manager for storing and playback of audio files.
  * Supports .mp3 & .ogg .
  * 
- * @version 0.1.0-20140411
+ * @version 0.2.0-20140412
  * @author Jason J.
  * @type HexamemEngine.prototype.AudioManager
  * @returns {HexamemEngine.prototype.AudioManager}
@@ -22,7 +22,7 @@ HexamemEngine.prototype.AudioManager = function(){
     
     
     var testA = new Audio();
-    /** 
+    /** Returns if supported by the browser.
      * @param {string} type The key to the list 'supportedFormats' to test.
      * @return {boolean} true if supported, false otherwise. */
     function isSupportedAudioType(type){
@@ -39,7 +39,9 @@ HexamemEngine.prototype.AudioManager = function(){
     
     /** @param {Element|Audio} a the element to play. */
     function playAudio(a){
-        if (a.play){       
+        if (a.play){
+            a.muted = false;
+            a.pause();
             try{
                 a.currentTime = 0;
             } catch (e){}
@@ -47,16 +49,61 @@ HexamemEngine.prototype.AudioManager = function(){
         }
     };
     
+   
+    //Has issues with iOS/mobile browsers
+    /** used to preload the audio in iOS,etc by playing and stopping it quickly. 
+     * @param {Element|Audio} audio The audio element to preload. 
+     * @param {Function} callback The function to call when the audio has loaded. */
+    function preloadAudio(audio, callback){
+        //audio.play();
+        //iOS: will not work in browser (unless user action) 
+        //but will work on homescreen.
+        audio.load();    
+        //audio.preload = 'auto';        
+        //audio.muted = true;
+        var canPlay = function(){
+            //console.log(audio.src)
+            audio.pause();
+            //audio.currentTime = audio.duration; //move to end.
+            //audio.play();
+            callback();
+            audio.removeEventListener('canplay', canPlay, false);
+            audio.removeEventListener('canplaythrough', canPlay, false);
+        };
+        var progress = function(){
+            try{
+                audio.removeEventListener('progress', progress, false);
+                audio.removeEventListener('playing', progress, false);
+                //audio.pause();
+                audio.currentTime = audio.duration; //move to end.             
+            } catch (e){}
+        };
+        var loadStart = function(){
+            //audio.pause();
+            audio.removeEventListener('loadstart', loadStart, false);
+        };
+        //audio.addEventListener('loadstart', loadStart, false);        
+        //audio.addEventListener('progress', progress, false);
+        //audio.addEventListener('playing', progress, false);
+        audio.addEventListener('canplay', canPlay, false);
+        audio.addEventListener('canplaythrough', canPlay, false);
+    }
+    
     
     /** Adds file to the file list.
      * @param {String} key The key to store it under (must be unique).
      * @param {String} filename The filename/location. If the file extension is 
+     * @param {Function} callback (Optional) The function to call when the file 
+     * has loaded.
      * omitted, "ogg" and "mp3" will be tried for different browsers. 
      * Assumes similiar, lowercase names. Paths are relative to include root.
      */
-    this.addFile= function(key, filename){
+    this.addFile= function(key, filename, callback){
         if (!Audio){
             return false;
+        }
+        if (!callback){
+            callback = function(){};
         }
         var extensionRegEx = /\.([a-z0-9]{1,4})$/i;
         if (extensionRegEx.test(filename)){
@@ -72,9 +119,9 @@ HexamemEngine.prototype.AudioManager = function(){
         audio.type = supportedFormats[matches[1]];
         audio.loop = false;
         audio.autobuffer = true;
-        audio.load(); //does not work in iOS
         
-        /** @todo Preload audio files. */
+        preloadAudio(audio, callback);
+        
         if (audio.src){
             fileList[key] = audio;
         }        
