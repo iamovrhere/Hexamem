@@ -5,7 +5,7 @@ if (typeof HexamemEngine === 'undefined'){
 /**
  * Responsible for score board interactions.
  * 
- * @version 0.1.0-20140331
+ * @version 0.2.0-20140411
  * @author Jason J.
  * @type HexamemEngine.prototype.HeaderBoard
  * @returns {HexamemEngine.prototype.HeaderBoard}
@@ -57,6 +57,10 @@ HexamemEngine.prototype.HeaderBoard = function(){
         } else {
             element.onclick = action;
         }
+    };
+    /** @param {boolean} enabled true to check, false to uncheck. */
+    this.setAutoProgress = function(enabled){
+        autoProgressCheck.checked = enabled ? 'checked' : '';
     };
     /** @param {Function} action The function to perform with the progress checkbox
      * is clicked. Sends the value of the checkbox as a param. */

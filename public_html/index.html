@@ -4,8 +4,8 @@
 -->
 <html manifest="hexamem.appcache">
     <head>
-        <!--Version: 0.3.3a-20140406 -->
-        <title>HexaMem 0.3.3a</title>
+        <!--Version: 0.4.0a-20140411 -->
+        <title>HexaMem 0.4.0a</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -20,19 +20,21 @@
         <![endif]-->
                 
         <script type="text/javascript" src="js/hexamem-engine.js" ></script>
-        <script type="text/javascript" src="js/Game.js" ></script>
+        <script type="text/javascript" src="js/Game.js" ></script> 
         <script type="text/javascript" src="js/PlayArea.js" ></script>
-        <script type="text/javascript" src="js/HeaderBoard.js" ></script>        
+        <script type="text/javascript" src="js/HeaderBoard.js" ></script>
+        <script type="text/javascript" src="js/Storage.js" ></script>
+        <script type="text/javascript" src="js/AudioManager.js?" ></script>
     </head>
     <body >
         <div id="header-board">
             <div id="score-best" >
                 <span class="label">Best: </span>
-                <span id="best-score" class="score" >0</span>
+                <span id="best-score" class="score" ></span>
             </div>
             <div id="score-current" >
                 <span class="label">Current: </span>
-                <span id="current-score"  class="score" >0</span>
+                <span id="current-score"  class="score" ></span>
             </div>
             <form id="controls" >
                 <input id="auto-progress" name="auto-progress" checked="checked" 
