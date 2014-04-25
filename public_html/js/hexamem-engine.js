@@ -12,7 +12,7 @@ if (typeof console === 'undefined'){
 }
 /** The super object to contain the entire game engine. 
      * 
-     * @version 0.4.0-20140411
+     * @version 0.5.0-20140413
      * @author Jason J.
      * @type hexamemEnginer|Object
      */
