@@ -8,7 +8,7 @@ if (typeof HexamemEngine === 'undefined'){
  * If board components cannot be found, it throws an Error. 
  * 
  * @param {Number} size The expected size of the play area.
- * @version 0.3.2-20140403
+ * @version 0.4.0-20140413
  * @author Jason J.
  * @type HexamemEngine.prototype.PlayArea
  * @returns {HexamemEngine.prototype.PlayArea}
@@ -51,6 +51,9 @@ HexamemEngine.prototype.PlayArea = function(size){
     /** @type Array|Element An array of elements for the clicking areas. */
     var buttonClickArea = new Array();
     
+    /** @type Object|String An associative list of strings matching
+     * { id: className  }. Used to clear all animations.  */
+    var defaultClasses = {};
     
     /** @type Array|Function The list of functions to perform on click. */
     var flashButtonFunctions = new Array();
@@ -73,9 +76,14 @@ HexamemEngine.prototype.PlayArea = function(size){
     //set middle click listener.
     addAction(middleButtonClickArea, middleButtonActions);
     
+    //store class names.
+    defaultClasses[gameBorderUnderlay.id] = gameBorderUnderlay.className;
+    
     for (var index = 1; index <= BOARD_SIZE; index++  ){
         var clickArea = document.getElementById(idClickAreaStub.replace('STUB', index));
         var button = document.getElementById(idButtonDisplayStub.replace('STUB', index));
+        //populate class default list
+        defaultClasses[button.id] = button.className;
         
         if (!clickArea && !button){
             throw new Error('Cannot find item '+ index + '\'s clickable or display area.');
@@ -256,6 +264,15 @@ HexamemEngine.prototype.PlayArea = function(size){
     ////////////////////////////////////////////////////////////////////////////
     //// Public functions
     ////////////////////////////////////////////////////////////////////////////
+    /** Clears all animations off the board. */
+    this.clearAnimationClasses = function(){
+        for (var index = 0; index < buttonDisplayArea.length; index++){
+            buttonDisplayArea[index].className =
+                    defaultClasses[buttonDisplayArea[index].id];
+        }
+        //gameBorderUnderlay.className = defaultClasses[gameBorderUnderlay.id];
+    };
+    
     /** Adds a listener for the middle button.
      * @param {Function} action The function to perform.
      * @throws {Error} If action is not a function.
@@ -267,6 +284,19 @@ HexamemEngine.prototype.PlayArea = function(size){
             throw new Error('"'+action+'" is not a function!');
         }
     };
+    
+    /** Removes a listener for the middle button.
+     * @param {Function} action The function to remove.
+     */
+    this.removeMiddleButtonListener = function(action){
+        for ( var i =0; i < middleButtonFunctions.length; i++){
+            if (action === middleButtonFunctions[i]){
+                middleButtonFunctions.splice(i, 1);
+            }
+        }
+    };
+    
+        
     /** Adds a listener for the flash buttons.
      * @param {Function} action The function to perform, takes in one parameter:
      * the 1-indexed position of the button pressed.
