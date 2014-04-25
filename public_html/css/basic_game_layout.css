@@ -3,7 +3,7 @@
 Calculation for main hexagons:
 (width/2) * tan(30 deg) = triangle height (simple trig)
 
-    version: 0.6.0-20140410
+    version: 0.6.1-20140413
     Created on : Mar 23, 2014, 12:36:20 PM
     Author     : Jason J.
 */
@@ -501,13 +501,14 @@ Remember to balance the heights here with the heights in the
  * Defines the attributes of the button's texture pattern. 
  */
 
-/** Size is depending on trapezium-button size. */
+/** Size is depending on trapezium-button size. 
+Sits onto the actual buttons. */
 .button-pattern-underlay {
     position: absolute;
     
     /** Above the trapeiziums. */
     z-index: 10;
-    opacity: 0.04   ;
+    opacity: 0.09   ;
     
     height: 200px;
     width: 80px;
