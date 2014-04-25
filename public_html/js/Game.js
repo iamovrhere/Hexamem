@@ -10,7 +10,7 @@ if (typeof HexamemEngine === 'undefined'){
  * scores and controls are.
  * @param {HexamemEngine.prototype.AudioManager} audioManager The audio manager
  * for loading and playback of sounds.
- * @version 0.4.2-20140413
+ * @version 0.4.3-20140413
  * @author Jason J.
  * @type HexamemEngine.prototype.Game
  * @returns {HexamemEngine.prototype.Game}
@@ -49,7 +49,7 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard, audioManager){
     /** @type Number the delay before providing feedback. */
     var FEEDBACK_DELAY = 1000;
     /** @type Number the number of 'level's before updating the difficulty. */
-    var DIFFICULTY_SHIFT_INCREMENT = 4 ;
+    var DIFFICULTY_SHIFT_INCREMENT = 2 ;
     
     /** @type String The highscore key for score storage. */
     var KEY_BEST_SCORE = 'my_highscore';
@@ -87,9 +87,15 @@ HexamemEngine.prototype.Game = function(gameArea, scoreBoard, audioManager){
     ///////////////////////////////////////////////////////////////////////////
     //// End Members set.
     ////////////////////////////////////////////////////////////////////////////
+    
+    ////////////////////////////////////////////////////////////////////////////
+    //// Initialize game.
+    ////////////////////////////////////////////////////////////////////////////
+    
     var setStart = function(){
             gameboard.setMiddleButton('Start', 1);
             gameboard.setMiddleButtonListener(function(){
+                gameboard.clearAnimationClasses();
                 progress(true);
             }); 
         };
