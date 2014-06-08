@@ -1,0 +1,10 @@
+# git ignore for netbeans html5 project
+
+#ignore netbeans project files
+nbproject/private/
+nbproject/
+
+#ignore temp files
+*.swp
+~*
+*~
