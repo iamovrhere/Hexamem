@@ -11,32 +11,32 @@ Additionally the game must provide cross-browser support, not only for Firefox, 
 
 Lastly, it must be done without the use of external libraries.
 
-###Compatibility & Demo
+### Compatibility & Demo
 As the project is incomplete, compatibility is currently limited to: 
 - Firefox 16
 - Chrome 26
 - iPad (iOS 7)
 
-Click [here](http://htmlpreview.github.com/?https://github.com/iamovrhere/Hexamem/blob/master/public_html/index.html) for a demo.
+Click [here](https://iamovrhere.github.io/Hexamem/public_html/index.html) for a demo.
 
-###Change Log
-####Version 0.5.0a:
+### Change Log
+#### Version 0.5.0a:
 
 - Added basic audio support
 - Added local storage for modern browsers
 - Tweaked timing & difficulty
 - Used gradients to enhance the visuals in modern browsers
 
-###Further Reading
+### Further Reading
 
 Visit [myprojects.ovrhere](http://myprojects.ovrhere.com/) for more information on [this](http://myprojects.ovrhere.com/hexamem/) and other projects.
 
-##License
+## License
 ***
 
-####MIT LICENSE
+#### MIT LICENSE
 
-Copyright (c) 2014  Jason J.
+Copyright (c) 2019  Jason J.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
